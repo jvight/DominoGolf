@@ -131,7 +131,7 @@ public class Golf : MonoBehaviour
         character.Hit();
         StartCoroutine(DelayFunc(() =>
         {
-            AudioController.instance.PlayAudio(AudioType.HitGolf, true, 0, 0.5f);
+            AudioController.instance.PlayAudio(AudioType.HitGolf, true, 0, 1f);
             GameController.Instance.PlayGolf();
             rb.AddForce(new Vector3(Force.x, Math.Abs(Force.y + 200), Math.Abs(Force.y + 100)) * forceMultiplier);
         }, 1.17f * Time.timeScale));

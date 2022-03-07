@@ -14,7 +14,15 @@ public class HomeController : MonoBehaviour
     void Start()
     {
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
-        StaticData.game_start = false;
+        if (StaticData.loadding)
+        {
+            StaticData.loadding = false;
+            StaticData.game_start = false;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
         // progress.DOFillAmount(1f, 1f).OnComplete(() =>
         // {
         //     SceneManager.LoadScene("GameScene");
