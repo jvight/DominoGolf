@@ -21,10 +21,12 @@ public class UIController : MonoBehaviour
     void Start()
     {
         textLevel.text = "Level " + (StaticData.level + 1).ToString();
+        
         UpdateFlagFly(StaticData.level);
     }
 
-    public void UpdateTextCoin(int coin) {
+    public void UpdateTextCoin(int coin)
+    {
         textCoin.text = coin.ToString();
     }
 
@@ -87,11 +89,15 @@ public class UIController : MonoBehaviour
                     {
                         var seq = DOTween.Sequence()
                         .Append(scorePlus.transform.DOMoveY(scorePlus.transform.position.y + 1.6f, rd))
+                       
                         .Play();
                         var seq2 = DOTween.Sequence()
                         .Append(scorePlus.DOFade(1, 1f))
                         .Append(scorePlus.DOFade(0, 1f))
                         .Play();
+                        PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + 1);
+                            // Debug.Log(PlayerPrefs.GetInt("Coin", 0));
+                            UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
                     }, rd2));
 
                 }
