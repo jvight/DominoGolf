@@ -27,12 +27,14 @@ public class HomeController : MonoBehaviour
 
     public void OnClickRating()
     {
+        AudioController.instance.PlayAudio(AudioType.Click);
         SettingPopup.SetActive(false);
         IARManager.Instance.ShowBox();
     }
 
     public void OnClickSetting()
     {
+        AudioController.instance.PlayAudio(AudioType.Click);
         blackScreen.gameObject.SetActive(true);
         SettingPopup.SetActive(true);
         SettingPopup.transform.DOScale(1, 0.5f);
@@ -40,6 +42,7 @@ public class HomeController : MonoBehaviour
 
     public void OnClickXSetting()
     {
+        AudioController.instance.PlayAudio(AudioType.Click);
         blackScreen.gameObject.SetActive(false);
         SettingPopup.transform.DOScale(0, 0.5f).OnComplete(() =>
         {
@@ -49,6 +52,7 @@ public class HomeController : MonoBehaviour
 
     public void ClickStart()
     {   
+        AudioController.instance.PlayAudio(AudioType.Click);
         Invoke("GameStart", 0.1f);
         // SceneManager.LoadScene("LoadScene");
         transform.GetChild(0).gameObject.SetActive(false);
