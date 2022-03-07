@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6348488404522732156}
   - component: {fileID: 7427653765341409448}
   - component: {fileID: 5266308118122944380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface12
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,9 @@ GameObject:
   - component: {fileID: 965750962455148656}
   - component: {fileID: 4675341994356891579}
   - component: {fileID: 5266308118122944377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface18
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,9 +204,9 @@ GameObject:
   - component: {fileID: 7384624061505453874}
   - component: {fileID: 3648328888012859352}
   - component: {fileID: 5266308118122944382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface16
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,9 +300,9 @@ GameObject:
   - component: {fileID: 5572194083042960992}
   - component: {fileID: 6698257329168185334}
   - component: {fileID: 5266308118122944376}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface19
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +396,9 @@ GameObject:
   - component: {fileID: 8008506824139832165}
   - component: {fileID: 4020957680392139419}
   - component: {fileID: 5266308118122944383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface14
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,9 +490,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5665271224503382247}
   - component: {fileID: 6920046498529547116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obj2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,6 +539,8 @@ MonoBehaviour:
   isMove: 0
   isX: 0
   posEnd: {x: 0, y: 0, z: 0}
+  isRotate: 0
+  angleEnd: {x: 0, y: 0, z: 0}
 --- !u!1 &6144275345282043504
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,9 +553,9 @@ GameObject:
   - component: {fileID: 1626951411372124207}
   - component: {fileID: 8411715236625662353}
   - component: {fileID: 5266308118122944369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,9 +649,9 @@ GameObject:
   - component: {fileID: 5371413447031046795}
   - component: {fileID: 6437757912594340730}
   - component: {fileID: 5266308118122944370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface8
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,9 +745,9 @@ GameObject:
   - component: {fileID: 8905296627658483197}
   - component: {fileID: 1325438535892722982}
   - component: {fileID: 5266308118122944371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface6
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,9 +841,9 @@ GameObject:
   - component: {fileID: 5162905940393658523}
   - component: {fileID: 611448219096026812}
   - component: {fileID: 5266308118122944368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface4
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -935,9 +937,9 @@ GameObject:
   - component: {fileID: 1022821614920067905}
   - component: {fileID: 1464786158699769379}
   - component: {fileID: 5266308118122944381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface10
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1093,6 +1095,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 87ee15b82a504ea48855c01e2d681457, type: 3}
       propertyPath: m_Name
       value: xObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87ee15b82a504ea48855c01e2d681457, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 87ee15b82a504ea48855c01e2d681457, type: 3}
       propertyPath: m_IsActive

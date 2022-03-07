@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1438587143002506951}
   - component: {fileID: 8793274048969000476}
   - component: {fileID: 5736336796892925629}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface6
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,9 @@ GameObject:
   - component: {fileID: 3442237629786074017}
   - component: {fileID: 6926351034948857222}
   - component: {fileID: 7245873448358771231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface4
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,9 +204,9 @@ GameObject:
   - component: {fileID: 7373186081923811451}
   - component: {fileID: 8948912201746337049}
   - component: {fileID: 3368437483914547335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface10
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,9 +300,9 @@ GameObject:
   - component: {fileID: 2515264145654309297}
   - component: {fileID: 3545627915350702144}
   - component: {fileID: 3624302542382957729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface8
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +396,9 @@ GameObject:
   - component: {fileID: 522688025230039135}
   - component: {fileID: 6894541328100381089}
   - component: {fileID: 373304056681202757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface14
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,9 +490,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2809134915135640541}
   - component: {fileID: 8540093533302227170}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obj8
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,9 +552,9 @@ GameObject:
   - component: {fileID: 9148795236320627477}
   - component: {fileID: 2080505845142708907}
   - component: {fileID: 5825952406314725378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -648,9 +648,9 @@ GameObject:
   - component: {fileID: 7278962800493058890}
   - component: {fileID: 2918681920085785729}
   - component: {fileID: 4707730487716516780}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface18
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,9 +744,9 @@ GameObject:
   - component: {fileID: 1015683824775797768}
   - component: {fileID: 6539909114410550498}
   - component: {fileID: 6830509071972415769}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface16
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,9 +840,9 @@ GameObject:
   - component: {fileID: 2681739118748468570}
   - component: {fileID: 3789751557926638796}
   - component: {fileID: 1324721980370132923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface19
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -936,9 +936,9 @@ GameObject:
   - component: {fileID: 3492902059542915398}
   - component: {fileID: 1114439442934715282}
   - component: {fileID: 3357292077439716132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface12
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

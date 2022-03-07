@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5274939108995938557}
   - component: {fileID: 2156760871238131735}
   - component: {fileID: 3667949934152832919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface16
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,9 @@ GameObject:
   - component: {fileID: 2461257039308947391}
   - component: {fileID: 8047100870657759348}
   - component: {fileID: 8090721725424753001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface18
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,9 +204,9 @@ GameObject:
   - component: {fileID: 7069320595483009455}
   - component: {fileID: 8339488743243706425}
   - component: {fileID: 9222991069876285828}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface19
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,9 +300,9 @@ GameObject:
   - component: {fileID: 8598904201400192435}
   - component: {fileID: 5213900501121595239}
   - component: {fileID: 4842545499518392061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface12
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +396,9 @@ GameObject:
   - component: {fileID: 2413621023425948814}
   - component: {fileID: 4259519173180549612}
   - component: {fileID: 8250770646324326805}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface10
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,9 +492,9 @@ GameObject:
   - component: {fileID: 6114433945653240370}
   - component: {fileID: 4407838821609038569}
   - component: {fileID: 1099117527180555584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface6
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,9 +588,9 @@ GameObject:
   - component: {fileID: 7559712845428559700}
   - component: {fileID: 2824708821099907443}
   - component: {fileID: 3917094307714129208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface4
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,9 +684,9 @@ GameObject:
   - component: {fileID: 7333044696725046596}
   - component: {fileID: 8509744910649547957}
   - component: {fileID: 1912926434394202752}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface8
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,9 +778,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7048198800037721896}
   - component: {fileID: 2268346417973787500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obj9
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,9 +841,9 @@ GameObject:
   - component: {fileID: 4642300648534342826}
   - component: {fileID: 1766082762369398100}
   - component: {fileID: 7242744242552606111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface14
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -937,9 +937,9 @@ GameObject:
   - component: {fileID: 4168990677561438176}
   - component: {fileID: 6625717741238175326}
   - component: {fileID: 6090578043089704133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1079,6 +1079,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dace1b47c6835614fbe2c84d7575f020, type: 3}
       propertyPath: m_Name
       value: target
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dace1b47c6835614fbe2c84d7575f020, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dace1b47c6835614fbe2c84d7575f020, type: 3}
       propertyPath: m_IsActive

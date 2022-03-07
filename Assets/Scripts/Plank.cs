@@ -20,7 +20,8 @@ public class Plank : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if(isRed){
+        if (isRed)
+        {
             xMark.SetActive(true);
         }
         // rb.centerOfMass = new Vector3(0, 0.25f, 0);
@@ -41,27 +42,31 @@ public class Plank : MonoBehaviour
 
     void OnCollisionEnter(Collision collisionInfo)
     {
-        if ((!coled && collisionInfo.gameObject.tag == "Plank")||(!coled && collisionInfo.gameObject.tag == "Ball"))
+        if ((!coled && collisionInfo.gameObject.tag == "Plank") || (!coled && collisionInfo.gameObject.tag == "Ball"))
         {
+            AudioController.instance.PlayAudio(AudioType.Fall, true, 0, 0.5f);
             if (listColorChange.Count > 0)
             {
                 GetComponent<MeshRenderer>().material.DOColor(listColorChange[0], 0.6f).OnComplete(() =>
                 {
                     GetComponent<MeshRenderer>().material.DOColor(listColorChange[1], 0.6f);
-                    
+
                 });
             }
-            if(isRed){
-                xMark.GetComponent<MeshRenderer>().material.DOColor(xMarkColor,0.6f);
+            if (isRed)
+            {
+                xMark.GetComponent<MeshRenderer>().material.DOColor(xMarkColor, 0.6f);
             }
-            StartCoroutine(DelayFunc(()=>{
+            StartCoroutine(DelayFunc(() =>
+            {
                 Debug.Log(Math.Abs(transform.eulerAngles.x));
-                if(Math.Abs(transform.eulerAngles.x)<10||Math.Abs(transform.eulerAngles.x)>350){
-                    
+                if (Math.Abs(transform.eulerAngles.x) < 10 || Math.Abs(transform.eulerAngles.x) > 350)
+                {
+
                     GetComponent<MeshRenderer>().material.DOColor(colorBase, 0.6f);
                     ResetPlank();
                 }
-            },2f));
+            }, 2f));
             coled = true;
             poured = true;
             GameController.Instance.PourDone();
@@ -72,12 +77,13 @@ public class Plank : MonoBehaviour
         }
         // rb.angularVelocity *= 50;
     }
-    public void ResetPlank(){
-        coled=false;
-        poured=false;
-        xMark.GetComponent<MeshRenderer>().material.color=originColor;
+    public void ResetPlank()
+    {
+        coled = false;
+        poured = false;
+        xMark.GetComponent<MeshRenderer>().material.color = originColor;
     }
-       IEnumerator DelayFunc(Action call, float time)
+    IEnumerator DelayFunc(Action call, float time)
     {
         yield return new WaitForSeconds(time);
         call();

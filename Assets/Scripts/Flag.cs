@@ -31,6 +31,7 @@ public class Flag : MonoBehaviour
 
     void Fly()
     {
+        AudioController.instance.PlayAudio(AudioType.Flag, true, 0, 0.5f);
         var main = particle.GetComponent<ParticleSystem>().main;
         main.simulationSpeed = 0.5f;
         particle.SetActive(true);

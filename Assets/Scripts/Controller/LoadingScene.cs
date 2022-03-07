@@ -11,7 +11,7 @@ public class LoadingScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioController.instance.PlayAudio(AudioType.BGM);
+        AudioController.instance.PlayAudio(AudioType.BGM, false, 0, 0.25f);
         progress.DOFillAmount(1f, 1f).OnComplete(() =>
         {
             SceneManager.LoadScene("GameScene");

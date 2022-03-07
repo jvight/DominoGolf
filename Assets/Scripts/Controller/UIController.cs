@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         textLevel.text = "Level " + (StaticData.level + 1).ToString();
-        
+
         UpdateFlagFly(StaticData.level);
     }
 
@@ -57,6 +57,7 @@ public class UIController : MonoBehaviour
 
     public void GameWinEvent()
     {
+        AudioController.instance.PlayAudio(AudioType.Victory, true, 0, 0.5f);
         GameWinPopup.gameObject.SetActive(true);
         GameWinPopup.GetComponent<Image>().DOFade(0.7f, 1);
         GameWinPopup.gameObject.SetActive(true);
@@ -66,6 +67,7 @@ public class UIController : MonoBehaviour
 
     public void GameLoseEvent()
     {
+        AudioController.instance.PlayAudio(AudioType.Fail, true, 0, 0.5f);
         GameLosePopup.gameObject.SetActive(true);
         GameLosePopup.GetComponent<Image>().DOFade(0.7f, 1);
         GameLosePopup.SetActive(true);
@@ -92,15 +94,15 @@ public class UIController : MonoBehaviour
                     {
                         var seq = DOTween.Sequence()
                         .Append(scorePlus.transform.DOMoveY(scorePlus.transform.position.y + 1.6f, rd))
-                       
+
                         .Play();
                         var seq2 = DOTween.Sequence()
                         .Append(scorePlus.DOFade(1, 1f))
                         .Append(scorePlus.DOFade(0, 1f))
                         .Play();
                         PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + 1);
-                            // Debug.Log(PlayerPrefs.GetInt("Coin", 0));
-                            UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
+                        // Debug.Log(PlayerPrefs.GetInt("Coin", 0));
+                        UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
                     }, rd2));
 
                 }
@@ -117,13 +119,15 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("GameScene");
         // GameController.Instance.ChangeTime(1f);
     }
-    public void ClickNext(){
+    public void ClickNext()
+    {
         StaticData.level++;
         SceneManager.LoadScene("GameScene");
     }
 
-    public void OnClickReward() {
-        
+    public void OnClickReward()
+    {
+
     }
     IEnumerator DelayFunc(Action call, float time)
     {

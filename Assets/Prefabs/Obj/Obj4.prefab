@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 4957147371883266053}
   - component: {fileID: 4957147371883266073}
   - component: {fileID: 4957147371883266054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obj4
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,3 +145,5 @@ MonoBehaviour:
   isMove: 0
   isX: 0
   posEnd: {x: 0, y: 0, z: 0}
+  isRotate: 0
+  angleEnd: {x: 0, y: 0, z: 0}
