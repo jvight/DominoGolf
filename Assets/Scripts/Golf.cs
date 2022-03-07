@@ -20,6 +20,7 @@ public class Golf : MonoBehaviour
     Vector3 oldAngle;
     bool isTouch = false;
     bool touchUI = false;
+    bool canTouch = true;
 
     void Start()
     {
@@ -48,7 +49,6 @@ public class Golf : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         if (results.Count > 0)
         {
-            Debug.Log(results[0].gameObject.name);
             if (!results[0].gameObject.GetComponent<Button>())
             {
                 return false;
@@ -59,19 +59,20 @@ public class Golf : MonoBehaviour
 
     void Update()
     {
-        if (IsPointerOverUIObject())
+        if (IsPointerOverUIObject() && canTouch)
         {
-            touchUI = true;
+            canTouch = false;
+            StartCoroutine(DelayFunc(() =>
+            {
+                canTouch = true;
+            }, 0.1f));
             return;
         }
-        if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone) { return; }
-        if (Input.GetMouseButtonDown(0))
+        if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch) { return; }
+        if (Input.GetMouseButtonDown(0) && canTouch)
         {
-            if (touchUI) { return; }
-            touchUI = false;
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
-            // Debug.Log("touch start");
         }
         else if (Input.GetMouseButtonUp(0))
         {
