@@ -54,6 +54,14 @@ public class Plank : MonoBehaviour
             if(isRed){
                 xMark.GetComponent<MeshRenderer>().material.DOColor(xMarkColor,0.6f);
             }
+            StartCoroutine(DelayFunc(()=>{
+                Debug.Log(Math.Abs(transform.eulerAngles.x));
+                if(Math.Abs(transform.eulerAngles.x)<10||Math.Abs(transform.eulerAngles.x)>350){
+                    
+                    GetComponent<MeshRenderer>().material.DOColor(colorBase, 0.6f);
+                    ResetPlank();
+                }
+            },2f));
             coled = true;
             poured = true;
             GameController.Instance.PourDone();
@@ -68,6 +76,11 @@ public class Plank : MonoBehaviour
         coled=false;
         poured=false;
         xMark.GetComponent<MeshRenderer>().material.color=originColor;
+    }
+       IEnumerator DelayFunc(Action call, float time)
+    {
+        yield return new WaitForSeconds(time);
+        call();
     }
 }
 

@@ -84,7 +84,7 @@ public class Golf : MonoBehaviour
             Vector3 force = mousePressDownPos - mouseReleasePos;
             force = Vector3.ClampMagnitude(force, 800);
             Vector3 forceV = new Vector3(force.x, Math.Abs(force.y + 200), Math.Abs(force.y + 100)) * forceMultiplier;
-            Debug.Log(force.magnitude);
+            // Debug.Log(force.magnitude);
 
 
             drawTrajectory.UpdateTrajectory(forceV, rb, transform.position);
@@ -126,7 +126,7 @@ public class Golf : MonoBehaviour
         {
             GameController.Instance.PlayGolf();
             rb.AddForce(new Vector3(Force.x, Math.Abs(Force.y + 200), Math.Abs(Force.y + 100)) * forceMultiplier);
-        }, 1.2f * Time.timeScale));
+        }, 1.17f * Time.timeScale));
         isShoot = true;
     }
 
