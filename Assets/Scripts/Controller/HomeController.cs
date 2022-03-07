@@ -8,26 +8,21 @@ using TMPro;
 
 public class HomeController : MonoBehaviour
 {
-    public static HomeController Instance;
     public Image blackScreen;
     public GameObject SettingPopup;
     public GameObject UIGame;
     void Start()
     {
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        StaticData.game_start = false;
         // progress.DOFillAmount(1f, 1f).OnComplete(() =>
         // {
         //     SceneManager.LoadScene("GameScene");
         // });
+    }
+
+    void GameStart() {
+        StaticData.game_start = true;
     }
 
     public void OnClickRating()
@@ -53,7 +48,8 @@ public class HomeController : MonoBehaviour
     }
 
     public void ClickStart()
-    {
+    {   
+        Invoke("GameStart", 0.1f);
         // SceneManager.LoadScene("LoadScene");
         transform.GetChild(0).gameObject.SetActive(false);
         UIGame.SetActive(true);

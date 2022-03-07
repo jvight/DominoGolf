@@ -65,18 +65,19 @@ public class Golf : MonoBehaviour
             StartCoroutine(DelayFunc(() =>
             {
                 canTouch = true;
-            }, 0.1f));
+            }, 0.5f));
             return;
         }
-        if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch) { return; }
+        if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch || !StaticData.game_start) { return; }
         if (Input.GetMouseButtonDown(0) && canTouch)
         {
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
+            Debug.Log("tocuh start");
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            // Debug.Log("touch end");
+            Debug.Log("touch end");
             if (!isTouch) { return; }
             isTouch = false;
             drawTrajectory.HideLine();
