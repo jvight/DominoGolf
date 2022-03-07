@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     public TMP_Text scorePlusPrefab;
     public Text textCoin;
     public Text textLevel;
+    public GameObject GameWinPopup;
+    public GameObject GameLosePopup;
 
     void Start()
     {
@@ -55,22 +57,23 @@ public class UIController : MonoBehaviour
 
     public void GameWinEvent()
     {
-        blackScreen.gameObject.SetActive(true);
-        blackScreen.DOFade(0.7f, 1);
-        textEnd.gameObject.SetActive(true);
-        textEnd.DOFade(0.7f, 1);
-        textEnd.text = "VICTORY";
+        GameWinPopup.gameObject.SetActive(true);
+        GameWinPopup.GetComponent<Image>().DOFade(0.7f, 1);
+        GameWinPopup.gameObject.SetActive(true);
+        // GameWinPopup.DOFade(0.7f, 1);
+        // GameWinPopup.text = "VICTORY";
     }
 
     public void GameLoseEvent()
     {
-        blackScreen.gameObject.SetActive(true);
-        blackScreen.DOFade(0.7f, 1);
-        textEnd.DOFade(0.7f, 1).OnComplete(() =>
-        {
-            textEnd.gameObject.SetActive(false);
-        });
-        textEnd.text = "DEFEATED";
+        GameLosePopup.gameObject.SetActive(true);
+        GameLosePopup.GetComponent<Image>().DOFade(0.7f, 1);
+        GameLosePopup.SetActive(true);
+        // textEnd.DOFade(0.7f, 1).OnComplete(() =>
+        // {
+        //     textEnd.gameObject.SetActive(false);
+        // });
+        // textEnd.text = "DEFEATED";
     }
     public void AddScore()
     {
@@ -109,13 +112,6 @@ public class UIController : MonoBehaviour
 
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ClickRelay()
     {
         SceneManager.LoadScene("GameScene");
@@ -124,6 +120,10 @@ public class UIController : MonoBehaviour
     public void ClickNext(){
         StaticData.level++;
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void OnClickReward() {
+        
     }
     IEnumerator DelayFunc(Action call, float time)
     {

@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
         // GameAnalytics.Initialize();
     }
     void Start()
-    {   
+    {
         coin = PlayerPrefs.GetInt("Coin", 0);
         uiController.UpdateTextCoin(coin);
         int numOff = PlayerPrefs.GetInt("RateOff", 0);
@@ -162,16 +162,16 @@ public class GameController : MonoBehaviour
         StartCoroutine(DelayFunc(() =>
         {
             uiController.GameWinEvent();
-            StartCoroutine(DelayFunc(() =>
+            StaticData.level += 1;
+            if (StaticData.level >= 30)
             {
-                StaticData.level += 1;
-                if (StaticData.level >= 30)
-                {
-                    StaticData.level = 0;
-                }
-                PlayerPrefs.SetInt("Level", StaticData.level);
-                SceneManager.LoadScene("GameScene");
-            }, 2f));
+                StaticData.level = 0;
+            }
+            PlayerPrefs.SetInt("Level", StaticData.level);
+            // SceneManager.LoadScene("GameScene");
+            // StartCoroutine(DelayFunc(() =>
+            // {
+            // }, 2f));
         }, 2f));
         GameDone = true;
     }
