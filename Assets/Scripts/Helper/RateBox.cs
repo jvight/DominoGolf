@@ -8,13 +8,13 @@ public class RateBox : MonoBehaviour
     public Transform baseStar;
     public Sprite sprStarOn;
     public Sprite sprStarOff;
-    public GameObject blackScreen;
     public int numStar = 0;
     // Start is called before the first frame update
     public void OnClickLater()
     {
         if (IARManager.Instance.showRate)
         {
+            AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
             gameObject.SetActive(false);
             int numOff = PlayerPrefs.GetInt("RateOff", 0);
             if (StaticData.level == 3 && numOff == 0 || StaticData.level == 10 && numOff == 1 || StaticData.level == 15 && numOff == 2)
@@ -22,12 +22,12 @@ public class RateBox : MonoBehaviour
                 PlayerPrefs.SetInt("RateOff", numOff + 1);
             }
             IARManager.Instance.showRate = false;
-            blackScreen.SetActive(false);
         }
     }
 
     public void OnClickRate()
     {
+        AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
         if (this.numStar == 5)
         {
 #if UNITY_ANDROID
@@ -48,7 +48,6 @@ public class RateBox : MonoBehaviour
             PlayerPrefs.SetInt("RateOff", numOff + 1);
         }
         gameObject.SetActive(false);
-        blackScreen.SetActive(false);
     }
 
     void SendEmail()

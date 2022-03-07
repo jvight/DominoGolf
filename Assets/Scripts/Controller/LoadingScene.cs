@@ -12,7 +12,7 @@ public class LoadingScene : MonoBehaviour
     void Start()
     {
         StaticData.loadding = true;
-        AudioController.instance.PlayAudio(AudioType.BGM, false, 0, 0.25f);
+        AudioController.instance.PlayAudio(AudioType.BGM, 0.25f);
         progress.DOFillAmount(1f, 1f).OnComplete(() =>
         {
             SceneManager.LoadScene("GameScene");

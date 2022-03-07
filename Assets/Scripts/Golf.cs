@@ -131,7 +131,7 @@ public class Golf : MonoBehaviour
         character.Hit();
         StartCoroutine(DelayFunc(() =>
         {
-            AudioController.instance.PlayAudio(AudioType.HitGolf, true, 0, 1f);
+            AudioController.instance.PlayAudio(AudioType.HitGolf, 1f);
             GameController.Instance.PlayGolf();
             rb.AddForce(new Vector3(Force.x, Math.Abs(Force.y + 200), Math.Abs(Force.y + 100)) * forceMultiplier);
         }, 1.17f * Time.timeScale));
@@ -149,11 +149,11 @@ public class Golf : MonoBehaviour
             // Time.timeScale = 2.5f;
             GameController.Instance.ChangeTime(2.5f);
             // character.SetTimeAnim(0.5f);
-            AudioController.instance.PlayAudio(AudioType.GolfHitOther, true, 0, 1f);
+            AudioController.instance.PlayAudio(AudioType.GolfHitOther, 1f);
         }
         else if (collisionInfo.gameObject.tag == "Border" || collisionInfo.gameObject.tag == "Object")
         {
-            AudioController.instance.PlayAudio(AudioType.GolfHitOther, true, 0, 1f);
+            AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
         }
         Debug.Log(collisionInfo.gameObject.tag);
         if (isShoot)

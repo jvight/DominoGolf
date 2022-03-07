@@ -48,6 +48,14 @@ public class Setting : MonoBehaviour
         TextViewMusic.GetComponent<Text>().text = isMusic ? "ON" : "OFF";
         TextViewMusic.GetComponent<Text>().color = isMusic ? new Color(87, 87, 87, 255) : new Color(31, 197, 23, 255);
         PlayerPrefs.SetInt("Music", isMusic ? 0 : 1);
+        if (!isMusic)
+        {
+            AudioController.instance.PauseAudio(AudioType.BGM);
+        }
+        else
+        {
+            AudioController.instance.ResumeAudio(AudioType.BGM);
+        }
     }
     public void OnClickSound()
     {

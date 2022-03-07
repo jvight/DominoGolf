@@ -29,13 +29,13 @@ public class GameController : MonoBehaviour
     {
         coin = PlayerPrefs.GetInt("Coin", 0);
         uiController.UpdateTextCoin(coin);
-        int numOff = PlayerPrefs.GetInt("RateOff", 0);
-        Debug.Log(numOff);
-        if (StaticData.level == 3 && numOff == 0 || StaticData.level == 10 && numOff == 1 || StaticData.level == 15 && numOff == 2)
-        {
-            IARManager.Instance.ShowBox();
-            uiController.blackScreen.gameObject.SetActive(true);
-        }
+        // int numOff = PlayerPrefs.GetInt("RateOff", 0);
+        // Debug.Log(numOff);
+        // if (StaticData.level == 3 && numOff == 0 || StaticData.level == 10 && numOff == 1 || StaticData.level == 15 && numOff == 2)
+        // {
+        //     IARManager.Instance.ShowBox();
+        //     uiController.blackScreen.gameObject.SetActive(true);
+        // }
         uiController.SetAmountBall(AmountBall);
         Time.timeScale = 1;
         // Plank plankRed = listPlank.Find(plank => plank.tag == "Plank");
@@ -161,13 +161,20 @@ public class GameController : MonoBehaviour
         uiController.AddScore();
         StartCoroutine(DelayFunc(() =>
         {
-            uiController.GameWinEvent();
-            StaticData.level += 1;
-            if (StaticData.level >= 30)
+            int numOff = PlayerPrefs.GetInt("RateOff", 0);
+            Debug.Log(numOff);
+            if (StaticData.level == 2 && numOff == 0 || StaticData.level == 9 && numOff == 1 || StaticData.level == 14 && numOff == 2)
             {
-                StaticData.level = 0;
+                IARManager.Instance.ShowBox();
+                uiController.blackScreen.gameObject.SetActive(true);
             }
-            PlayerPrefs.SetInt("Level", StaticData.level);
+            uiController.GameWinEvent();
+            // StaticData.level += 1;
+            // if (StaticData.level >= 30)
+            // {
+            //     StaticData.level = 0;
+            // }
+            // PlayerPrefs.SetInt("Level", StaticData.level);
             // SceneManager.LoadScene("GameScene");
             // StartCoroutine(DelayFunc(() =>
             // {

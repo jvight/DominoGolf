@@ -57,7 +57,7 @@ public class UIController : MonoBehaviour
 
     public void GameWinEvent()
     {
-        AudioController.instance.PlayAudio(AudioType.Victory, true, 0, 0.5f);
+        AudioController.instance.PlayAudio(AudioType.Victory, 0.3f);
         GameWinPopup.gameObject.SetActive(true);
         GameWinPopup.GetComponent<Image>().DOFade(0.7f, 1);
         GameWinPopup.gameObject.SetActive(true);
@@ -67,7 +67,7 @@ public class UIController : MonoBehaviour
 
     public void GameLoseEvent()
     {
-        AudioController.instance.PlayAudio(AudioType.Fail, true, 0, 0.5f);
+        AudioController.instance.PlayAudio(AudioType.Fail, 0.5f);
         GameLosePopup.gameObject.SetActive(true);
         GameLosePopup.GetComponent<Image>().DOFade(0.7f, 1);
         GameLosePopup.SetActive(true);
@@ -121,7 +121,12 @@ public class UIController : MonoBehaviour
     }
     public void ClickNext()
     {
-        StaticData.level++;
+        StaticData.level += 1;
+        if (StaticData.level >= 30)
+        {
+            StaticData.level = 0;
+        }
+        PlayerPrefs.SetInt("Level", StaticData.level);
         SceneManager.LoadScene("GameScene");
     }
 

@@ -44,7 +44,7 @@ public class Plank : MonoBehaviour
     {
         if ((!coled && collisionInfo.gameObject.tag == "Plank") || (!coled && collisionInfo.gameObject.tag == "Ball"))
         {
-            AudioController.instance.PlayAudio(AudioType.Fall, true, 0, 1f);
+            AudioController.instance.PlayAudio(AudioType.Fall, 1f);
             if (listColorChange.Count > 0)
             {
                 GetComponent<MeshRenderer>().material.DOColor(listColorChange[0], 0.6f).OnComplete(() =>
@@ -59,7 +59,6 @@ public class Plank : MonoBehaviour
             }
             StartCoroutine(DelayFunc(() =>
             {
-                Debug.Log(Math.Abs(transform.eulerAngles.x));
                 if (Math.Abs(transform.eulerAngles.x) < 10 || Math.Abs(transform.eulerAngles.x) > 350)
                 {
 

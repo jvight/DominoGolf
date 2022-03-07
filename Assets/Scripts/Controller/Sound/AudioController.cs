@@ -22,7 +22,7 @@ public class AudioController : MonoBehaviour
     {
         public AudioType type;
         public AudioClip clip;
-        public float volume;
+        float volume;
     }
 
     [System.Serializable]
@@ -64,23 +64,61 @@ public class AudioController : MonoBehaviour
     #endregion
 
     #region Public Functions
-    public void PlayAudio(AudioType _type, bool _fade = false, float _delay = 0.0F, float volume = 0.5f)
+    public void PlayAudio(AudioType _type, float volume = 0.5f)
     {
-        AddJob(new AudioJob(AudioAction.START, _type, _fade, _delay), volume);
+        AudioTrack _track = GetAudioTrack(_type); // track existence should be verified by now
+        _track.source.clip = GetAudioClipFromAudioTrack(_type, _track);
+        _track.source.volume = volume;
+        float _initial = 0f;
+        float _target = 1f;
+        if (PlayerPrefs.GetInt("Sound", 0) == 1 && _type != AudioType.BGM)
+        {
+            return;
+        }
+
+        // AddJob(new AudioJob(AudioAction.START, _type, _fade, _delay), volume);
+        _track.source.Play();
+        // switch (_job.action)
+        // {
+        //     case AudioAction.START:
+        //         break;
+        //     case AudioAction.STOP when !_job.fade:
+        //         _track.source.Stop();
+        //         break;
+        //     case AudioAction.STOP:
+        //         _initial = 1f;
+        //         _target = 0f;
+        //         break;
+        //     case AudioAction.RESTART:
+        //         _track.source.Stop();
+        //         _track.source.Play();
+        //         break;
+        // }
     }
 
-    public void StopAudio(AudioType _type, bool _fade = false, float _delay = 0.0F, float volume = 0.5f)
+    public void PauseAudio(AudioType _type)
     {
-        AddJob(new AudioJob(AudioAction.STOP, _type, _fade, _delay), volume);
+        AudioTrack _track = GetAudioTrack(_type); // track existence should be verified by now
+        _track.source.clip = GetAudioClipFromAudioTrack(_type, _track);
+        _track.source.Pause();
+        // AddJob(new AudioJob(AudioAction.STOP, _type, _fade, _delay), volume);
     }
 
-    public void RestartAudio(AudioType _type, bool _fade = false, float _delay = 0.0F, float volume = 0.5f)
+    public void ResumeAudio(AudioType _type)
     {
-        AddJob(new AudioJob(AudioAction.RESTART, _type, _fade, _delay), volume);
+        AudioTrack _track = GetAudioTrack(_type); // track existence should be verified by now
+        _track.source.clip = GetAudioClipFromAudioTrack(_type, _track);
+        _track.source.UnPause();
+        // AddJob(new AudioJob(AudioAction.STOP, _type, _fade, _delay), volume);
     }
-    #endregion
 
-    #region Private Functions
+    // public void RestartAudio(AudioType _type, bool _fade = false, float _delay = 0.0F, float volume = 0.5f)
+    // {
+    //     AddJob(new AudioJob(AudioAction.RESTART, _type, _fade, _delay), volume);
+    // }
+    // #endregion
+
+    // #region Private Functions
     private void Configure()
     {
         instance = this;
@@ -99,108 +137,108 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    private void AddJob(AudioJob _job, float volume)
-    {
-        // cancel any job that might be using this job's audio source
-        RemoveConflictingJobs(_job.type);
+    // private void AddJob(AudioJob _job, float volume)
+    // {
+    //     // cancel any job that might be using this job's audio source
+    //     RemoveConflictingJobs(_job.type);
 
-        Coroutine _jobRunner = StartCoroutine(RunAudioJob(_job, volume));
-        m_JobTable.Add(_job.type, _jobRunner);
-        Log("Starting job on [" + _job.type + "] with operation: " + _job.action);
-    }
+    //     Coroutine _jobRunner = StartCoroutine(RunAudioJob(_job, volume));
+    //     m_JobTable.Add(_job.type, _jobRunner);
+    //     Log("Starting job on [" + _job.type + "] with operation: " + _job.action);
+    // }
 
-    private void RemoveJob(AudioType _type)
-    {
-        if (!m_JobTable.ContainsKey(_type))
-        {
-            Log("Trying to stop a job [" + _type + "] that is not running.");
-            return;
-        }
-        Coroutine _runningJob = (Coroutine)m_JobTable[_type];
-        StopCoroutine(_runningJob);
-        m_JobTable.Remove(_type);
-    }
+    // private void RemoveJob(AudioType _type)
+    // {
+    //     if (!m_JobTable.ContainsKey(_type))
+    //     {
+    //         Log("Trying to stop a job [" + _type + "] that is not running.");
+    //         return;
+    //     }
+    //     Coroutine _runningJob = (Coroutine)m_JobTable[_type];
+    //     StopCoroutine(_runningJob);
+    //     m_JobTable.Remove(_type);
+    // }
 
-    private void RemoveConflictingJobs(AudioType _type)
-    {
-        // cancel the job if one exists with the same type
-        if (m_JobTable.ContainsKey(_type))
-        {
-            RemoveJob(_type);
-        }
+    // private void RemoveConflictingJobs(AudioType _type)
+    // {
+    //     // cancel the job if one exists with the same type
+    //     if (m_JobTable.ContainsKey(_type))
+    //     {
+    //         RemoveJob(_type);
+    //     }
 
-        // cancel jobs that share the same audio track
-        AudioType _conflictAudio = AudioType.None;
-        AudioTrack _audioTrackNeeded = GetAudioTrack(_type, "Get Audio Track Needed");
-        foreach (DictionaryEntry _entry in m_JobTable)
-        {
-            AudioType _audioType = (AudioType)_entry.Key;
-            AudioTrack _audioTrackInUse = GetAudioTrack(_audioType, "Get Audio Track In Use");
-            if (_audioTrackInUse.source == _audioTrackNeeded.source)
-            {
-                _conflictAudio = _audioType;
-                break;
-            }
-        }
-        if (_conflictAudio != AudioType.None)
-        {
-            RemoveJob(_conflictAudio);
-        }
-    }
+    //     // cancel jobs that share the same audio track
+    //     AudioType _conflictAudio = AudioType.None;
+    //     AudioTrack _audioTrackNeeded = GetAudioTrack(_type, "Get Audio Track Needed");
+    //     foreach (DictionaryEntry _entry in m_JobTable)
+    //     {
+    //         AudioType _audioType = (AudioType)_entry.Key;
+    //         AudioTrack _audioTrackInUse = GetAudioTrack(_audioType, "Get Audio Track In Use");
+    //         if (_audioTrackInUse.source == _audioTrackNeeded.source)
+    //         {
+    //             _conflictAudio = _audioType;
+    //             break;
+    //         }
+    //     }
+    //     if (_conflictAudio != AudioType.None)
+    //     {
+    //         RemoveJob(_conflictAudio);
+    //     }
+    // }
 
-    private IEnumerator RunAudioJob(AudioJob _job, float volume)
-    {
-        if (_job.delay != null) yield return _job.delay;
+    // private IEnumerator RunAudioJob(AudioJob _job, float volume)
+    // {
+    //     if (_job.delay != null) yield return _job.delay;
 
-        AudioTrack _track = GetAudioTrack(_job.type); // track existence should be verified by now
-        _track.source.clip = GetAudioClipFromAudioTrack(_job.type, _track);
-        _track.source.volume = volume;
-        float _initial = 0f;
-        float _target = 1f;
-        switch (_job.action)
-        {
-            case AudioAction.START:
-                _track.source.Play();
-                break;
-            case AudioAction.STOP when !_job.fade:
-                _track.source.Stop();
-                break;
-            case AudioAction.STOP:
-                _initial = 1f;
-                _target = 0f;
-                break;
-            case AudioAction.RESTART:
-                _track.source.Stop();
-                _track.source.Play();
-                break;
-        }
+    //     AudioTrack _track = GetAudioTrack(_job.type); // track existence should be verified by now
+    //     _track.source.clip = GetAudioClipFromAudioTrack(_job.type, _track);
+    //     _track.source.volume = volume;
+    //     float _initial = 0f;
+    //     float _target = 1f;
+    //     switch (_job.action)
+    //     {
+    //         case AudioAction.START:
+    //             _track.source.Play();
+    //             break;
+    //         case AudioAction.STOP when !_job.fade:
+    //             _track.source.Stop();
+    //             break;
+    //         case AudioAction.STOP:
+    //             _initial = 1f;
+    //             _target = 0f;
+    //             break;
+    //         case AudioAction.RESTART:
+    //             _track.source.Stop();
+    //             _track.source.Play();
+    //             break;
+    //     }
 
-        // fade volume
-        if (_job.fade)
-        {
-            float _duration = 1.0f;
-            float _timer = 0.0f;
+    //     // fade volume
+    //     if (_job.fade)
+    //     {
+    //         float _duration = 1.0f;
+    //         float _timer = 0.0f;
 
-            while (_timer <= _duration)
-            {
-                _track.source.volume = Mathf.Lerp(_initial, _target, _timer / _duration);
-                _timer += Time.deltaTime;
-                yield return null;
-            }
+    //         while (_timer <= _duration)
+    //         {
+    //             _track.source.volume = Mathf.Lerp(_initial, _target, _timer / _duration);
+    //             _timer += Time.deltaTime;
+    //             yield return null;
+    //         }
 
-            // if _timer was 0.9999 and Time.deltaTime was 0.01 we would not have reached the target
-            // make sure the volume is set to the value we want
-            _track.source.volume = _target;
+    //         // if _timer was 0.9999 and Time.deltaTime was 0.01 we would not have reached the target
+    //         // make sure the volume is set to the value we want
+    //         _track.source.volume = _target;
 
-            if (_job.action == AudioAction.STOP)
-            {
-                _track.source.Stop();
-            }
-        }
+    //         if (_job.action == AudioAction.STOP)
+    //         {
+    //             _track.source.Stop();
+    //         }
+    //     }
 
-        m_JobTable.Remove(_job.type);
-        Log("Job count: " + m_JobTable.Count);
-    }
+    //     m_JobTable.Remove(_job.type);
+    //     Log("Job count: " + m_JobTable.Count);
+    // }
 
     private void GenerateAudioTable()
     {
@@ -211,22 +249,22 @@ public class AudioController : MonoBehaviour
                 // do not duplicate keys
                 if (m_AudioTable.ContainsKey(_obj.type))
                 {
-                    LogWarning("You are trying to register audio [" + _obj.type + "] that has already been registered.");
+                    // LogWarning("You are trying to register audio [" + _obj.type + "] that has already been registered.");
                 }
                 else
                 {
                     m_AudioTable.Add(_obj.type, _track);
-                    Log("Registering audio [" + _obj.type + "]");
+                    // Log("Registering audio [" + _obj.type + "]");
                 }
             }
         }
     }
 
-    private AudioTrack GetAudioTrack(AudioType _type, string _job = "")
+    private AudioTrack GetAudioTrack(AudioType _type)
     {
         if (!m_AudioTable.ContainsKey(_type))
         {
-            LogWarning("You are trying to <color=#fff>" + _job + "</color> for [" + _type + "] but no track was found supporting this audio type.");
+            // LogWarning("You are trying to <color=#fff>" + _job + "</color> for [" + _type + "] but no track was found supporting this audio type.");
             return null;
         }
         return (AudioTrack)m_AudioTable[_type];
@@ -244,16 +282,16 @@ public class AudioController : MonoBehaviour
         return null;
     }
 
-    private void Log(string _msg)
-    {
-        if (!debug) return;
-        Debug.Log("[Audio Controller]: " + _msg);
-    }
+    // private void Log(string _msg)
+    // {
+    //     if (!debug) return;
+    //     Debug.Log("[Audio Controller]: " + _msg);
+    // }
 
-    private void LogWarning(string _msg)
-    {
-        if (!debug) return;
-        Debug.LogWarning("[Audio Controller]: " + _msg);
-    }
+    // private void LogWarning(string _msg)
+    // {
+    //     if (!debug) return;
+    //     Debug.LogWarning("[Audio Controller]: " + _msg);
+    // }
     #endregion
 }
