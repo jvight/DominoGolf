@@ -15,8 +15,8 @@ public class UIController : MonoBehaviour
     public Transform BaseFlag;
     public Image blackScreen;
     public TMP_Text scorePlusPrefab;
-    public TMP_Text textCoin;
-    public TMP_Text textLevel;
+    public Text textCoin;
+    public Text textLevel;
 
     void Start()
     {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -45,9 +46,12 @@ public class Golf : MonoBehaviour
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        // if (results.Count > 0) {
-        //     Debug.Log(results[0].gameObject.name);
-        // }
+        if (results.Count > 0) {
+            Debug.Log(results[0].gameObject.name);
+            if (!results[0].gameObject.GetComponent<Button>()) {
+                return false;
+            }
+        }
         return results.Count > 0;
     }
 
@@ -57,6 +61,8 @@ public class Golf : MonoBehaviour
         {
             touchUI = true;
             return;
+        } else {
+            touchUI = false;
         }
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone) { return; }
         if (Input.GetMouseButtonDown(0))
@@ -78,15 +84,13 @@ public class Golf : MonoBehaviour
         }
         if (isTouch)
         {
-            if (touchUI) { return; }
+            // if (touchUI) { return; }
             // Debug.Log("touch move");
             mouseReleasePos = Input.mousePosition;
             Vector3 force = mousePressDownPos - mouseReleasePos;
             force = Vector3.ClampMagnitude(force, 800);
             Vector3 forceV = new Vector3(force.x, Math.Abs(force.y + 200), Math.Abs(force.y + 100)) * forceMultiplier;
             // Debug.Log(force.magnitude);
-
-
             drawTrajectory.UpdateTrajectory(forceV, rb, transform.position);
         }
         // if (Input.touchCount > 0)
