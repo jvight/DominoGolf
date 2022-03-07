@@ -8,12 +8,22 @@ using TMPro;
 
 public class HomeController : MonoBehaviour
 {
+    public static HomeController Instance;
     public Image blackScreen;
     public GameObject SettingPopup;
     public GameObject UIGame;
     void Start()
     {
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         // progress.DOFillAmount(1f, 1f).OnComplete(() =>
         // {
         //     SceneManager.LoadScene("GameScene");

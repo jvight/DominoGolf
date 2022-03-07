@@ -61,8 +61,6 @@ public class Golf : MonoBehaviour
         {
             touchUI = true;
             return;
-        } else {
-            touchUI = false;
         }
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone) { return; }
         if (Input.GetMouseButtonDown(0))

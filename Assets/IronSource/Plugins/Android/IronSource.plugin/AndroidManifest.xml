@@ -1,16 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:installLocation="preferExternal"
-    package="com.mobigreen.domino.golf"
-    android:versionName="1.0"
-    android:versionCode="1">
-    
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
-    <application>
-        <!-- <activity
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:installLocation="preferExternal" package="com.mobigreen.domino.golf" android:versionName="1.0" android:versionCode="1">
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <application>
+    <!-- <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
@@ -24,13 +17,11 @@
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:theme="@android:style/Theme.Translucent" /> -->
-        <!-- AdMob -->
-        
-        <!--As Requiered By Admob please add your App ID-->
-
-        <!--<meta-data-->
-            <!--android:name="com.google.android.gms.ads.APPLICATION_ID"-->
-            <!--android:value="YOUR_ADMOB_APP_ID"/>-->
-
-    </application>
+    <!-- AdMob -->
+    <!--As Requiered By Admob please add your App ID-->
+    <!--<meta-data-->
+    <!--android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+    <!--android:value="YOUR_ADMOB_APP_ID"/>-->
+    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9900730300733887~3166428661" />
+  </application>
 </manifest>
