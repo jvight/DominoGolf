@@ -746,6 +746,7 @@ MonoBehaviour:
   scorePlusPrefab: {fileID: 7065314804746522218, guid: d4d79e82be7e00e4f83aa051c15ba549, type: 3}
   textCoin: {fileID: 245298796}
   textLevel: {fileID: 2126628539}
+  textCoinGW: {fileID: 510877501}
   GameWinPopup: {fileID: 1055650377}
   GameLosePopup: {fileID: 727555138}
 --- !u!4 &129526750

@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public TMP_Text scorePlusPrefab;
     public Text textCoin;
     public Text textLevel;
+    public Text textCoinGW;
     public GameObject GameWinPopup;
     public GameObject GameLosePopup;
 
@@ -61,6 +62,7 @@ public class UIController : MonoBehaviour
         GameWinPopup.gameObject.SetActive(true);
         GameWinPopup.GetComponent<Image>().DOFade(0.7f, 1);
         GameWinPopup.gameObject.SetActive(true);
+        textCoinGW.text = "+" + GameController.Instance.PlankParent.childCount.ToString();
         // GameWinPopup.DOFade(0.7f, 1);
         // GameWinPopup.text = "VICTORY";
     }
@@ -94,7 +96,6 @@ public class UIController : MonoBehaviour
                     {
                         var seq = DOTween.Sequence()
                         .Append(scorePlus.transform.DOMoveY(scorePlus.transform.position.y + 1.6f, rd))
-
                         .Play();
                         var seq2 = DOTween.Sequence()
                         .Append(scorePlus.DOFade(1, 1f))
@@ -104,9 +105,7 @@ public class UIController : MonoBehaviour
                         // Debug.Log(PlayerPrefs.GetInt("Coin", 0));
                         UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
                     }, rd2));
-
                 }
-
             }
 
         }, 0.3f));
@@ -132,7 +131,14 @@ public class UIController : MonoBehaviour
 
     public void OnClickReward()
     {
-
+        FindObjectOfType<IronSourceAdsController>().ShowVideoAds(() =>
+        {
+        }, () =>
+        {
+            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + GameController.Instance.PlankParent.childCount);
+            UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
+            textCoinGW.text = "+" + (GameController.Instance.PlankParent.childCount * 2).ToString();
+        });
     }
     IEnumerator DelayFunc(Action call, float time)
     {
