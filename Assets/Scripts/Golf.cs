@@ -46,9 +46,11 @@ public class Golf : MonoBehaviour
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        if (results.Count > 0) {
+        if (results.Count > 0)
+        {
             Debug.Log(results[0].gameObject.name);
-            if (!results[0].gameObject.GetComponent<Button>()) {
+            if (!results[0].gameObject.GetComponent<Button>())
+            {
                 return false;
             }
         }
@@ -65,6 +67,7 @@ public class Golf : MonoBehaviour
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone) { return; }
         if (Input.GetMouseButtonDown(0))
         {
+            if (touchUI) { return; }
             touchUI = false;
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
@@ -73,7 +76,7 @@ public class Golf : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             // Debug.Log("touch end");
-            if (touchUI) { return; }
+            if (!isTouch) { return; }
             isTouch = false;
             drawTrajectory.HideLine();
             mouseReleasePos = Input.mousePosition;
