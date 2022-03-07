@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     void Start()
     {   
         coin = PlayerPrefs.GetInt("Coin", 0);
+        uiController.UpdateTextCoin(coin);
         int numOff = PlayerPrefs.GetInt("RateOff", 0);
         Debug.Log(numOff);
         if (StaticData.level == 3 && numOff == 0 || StaticData.level == 10 && numOff == 1 || StaticData.level == 15 && numOff == 2)
