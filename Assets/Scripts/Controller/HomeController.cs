@@ -10,7 +10,7 @@ public class HomeController : MonoBehaviour
 {
     public Image blackScreen;
     public GameObject SettingPopup;
-    public TMP_Text textLevel;
+    public GameObject UIGame;
     void Start()
     {
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
@@ -18,7 +18,6 @@ public class HomeController : MonoBehaviour
         // {
         //     SceneManager.LoadScene("GameScene");
         // });
-        textLevel.text = "Level " + (PlayerPrefs.GetInt("Level", 0) + 1).ToString();
     }
 
     public void OnClickRating()
@@ -45,7 +44,9 @@ public class HomeController : MonoBehaviour
 
     public void ClickStart()
     {
-        SceneManager.LoadScene("LoadScene");
+        // SceneManager.LoadScene("LoadScene");
+        transform.GetChild(0).gameObject.SetActive(false);
+        UIGame.SetActive(true);
     }
 
     // Update is called once per frame

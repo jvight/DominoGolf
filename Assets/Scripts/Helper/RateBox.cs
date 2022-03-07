@@ -67,7 +67,7 @@ public class RateBox : MonoBehaviour
         this.numStar = star;
         for (int i = 0; i < baseStar.childCount; i++)
         {
-            if (i == star - 1)
+            if (i <= star - 1)
             {
                 baseStar.GetChild(i).GetComponent<Image>().sprite = sprStarOn;
             }
