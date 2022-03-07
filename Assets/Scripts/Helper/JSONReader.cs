@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Globalization;
+using DG.Tweening;
 
 public class JSONReader : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public class JSONReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         Read();
     }
 
@@ -73,23 +75,30 @@ public class JSONReader : MonoBehaviour
     {
         objectList = JsonUtility.FromJson<ObjectList>(textJSON.text);
         Level levelData = objectList.level[StaticData.level];
-        for (int i = 0; i < levelData.plank.Length; i++)
+        var seq = DOTween.Sequence()
+        .SetDelay(0.5f)
+        .AppendCallback(() =>
         {
-            if (i >= PlankParent.childCount)
+            for (int i = 0; i < levelData.plank.Length; i++)
             {
-                GameObject plank = Instantiate(prefabPlank);
-                plank.transform.parent = PlankParent;
+                if (i >= PlankParent.childCount)
+                {
+                    GameObject plank = Instantiate(prefabPlank);
+                    plank.transform.parent = PlankParent;
+                }
+                string[] strPos = levelData.plank[i].pos.Split(char.Parse(","));
+                Vector3 pos = new Vector3(float.Parse(strPos[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[2], CultureInfo.InvariantCulture.NumberFormat));
+                PlankParent.GetChild(i).transform.position = pos;
+                string[] strAngle = levelData.plank[i].angle.Split(char.Parse(","));
+                Vector3 angle = new Vector3(float.Parse(strAngle[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[2], CultureInfo.InvariantCulture.NumberFormat));
+                PlankParent.GetChild(i).transform.eulerAngles = angle;
+                PlankParent.GetChild(i).GetComponent<Plank>().SetColor(levelData.plank[i].colorBase, levelData.plank[i].color);
+                PlankParent.GetChild(i).GetComponent<Plank>().isRed = levelData.plank[i].isRed;
+                PlankParent.GetChild(i).GetComponent<Plank>().ResetPlank();
             }
-            string[] strPos = levelData.plank[i].pos.Split(char.Parse(","));
-            Vector3 pos = new Vector3(float.Parse(strPos[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[2], CultureInfo.InvariantCulture.NumberFormat));
-            PlankParent.GetChild(i).transform.position = pos;
-            string[] strAngle = levelData.plank[i].angle.Split(char.Parse(","));
-            Vector3 angle = new Vector3(float.Parse(strAngle[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[2], CultureInfo.InvariantCulture.NumberFormat));
-            PlankParent.GetChild(i).transform.eulerAngles = angle;
-            PlankParent.GetChild(i).GetComponent<Plank>().SetColor(levelData.plank[i].colorBase, levelData.plank[i].color);
-            PlankParent.GetChild(i).GetComponent<Plank>().isRed = levelData.plank[i].isRed;
-            PlankParent.GetChild(i).GetComponent<Plank>().ResetPlank();
-        }
+        })
+        .Play();
+
         for (int i = 0; i < levelData.flag.Length; i++)
         {
             if (i >= FlagParent.childCount)
