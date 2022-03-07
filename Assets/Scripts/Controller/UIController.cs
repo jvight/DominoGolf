@@ -121,6 +121,10 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("GameScene");
         // GameController.Instance.ChangeTime(1f);
     }
+    public void ClickNext(){
+        StaticData.level++;
+        SceneManager.LoadScene("GameScene");
+    }
     IEnumerator DelayFunc(Action call, float time)
     {
         yield return new WaitForSeconds(time);
