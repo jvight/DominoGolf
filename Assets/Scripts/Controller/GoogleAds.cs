@@ -10,6 +10,9 @@ public class GoogleAds : MonoBehaviour
     void Start()
     {
         AppOpenAdManager.Instance.LoadAd();
+        AppOpenAdManager.Instance.ShowAdIfAvailable();
+        readyAds = false;
+        InvokeRepeating("Count", 1, 10);
     }
 
     public void OnApplicationStart()
@@ -25,10 +28,10 @@ public class GoogleAds : MonoBehaviour
         // Display the app open ad when the app is foregrounded
         if (!paused)
         {
-            // if (!readyAds) { return; }
+            if (!readyAds) { return; }
             AppOpenAdManager.Instance.ShowAdIfAvailable();
             readyAds = false;
-            // InvokeRepeating("Count", 1, 10);
+            InvokeRepeating("Count", 1, 10);
         }
     }
 
