@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     Animator anim;
+    public GameObject stick;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -34,7 +35,9 @@ public class Character : MonoBehaviour
          anim.SetTrigger("Idle");
         // anim.SetBool("IsDrive", false);
     }
-
+    public void Victory(){
+        anim.SetTrigger("Victory");
+    }
     public void SetTimeAnim(float time)
     {
         anim.speed = time;
