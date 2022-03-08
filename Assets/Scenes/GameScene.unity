@@ -6675,6 +6675,7 @@ MonoBehaviour:
   textJSON: {fileID: 4900000, guid: c1db660b30a7ab643ac1bd0aacefcc6a, type: 3}
   PrefabItem: {fileID: 4314511151159477838, guid: b0be8cc28a76d7440932d18b41b1cc15, type: 3}
   BaseItem: {fileID: 818910827}
+  TextCoin: {fileID: 1797951062}
   listItem:
     Ball: []
 --- !u!1 &1402585356
