@@ -83,6 +83,11 @@ public class ItemShop : MonoBehaviour
         }
     }
 
+    public void OnClickChoose() {
+        Debug.Log(this.ID);
+        Shop.SetBall(this.ID);
+    }
+
     // Update is called once per frame
     void Update()
     {

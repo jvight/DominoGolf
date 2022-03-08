@@ -9,6 +9,8 @@ public class ShopController : MonoBehaviour
     public GameObject PrefabItem;
     public Transform BaseItem;
     public Text TextCoin;
+    public Material BallReview;
+    public Texture2D[] TextureBall;
     [System.Serializable]
     public class Item
     {
@@ -59,6 +61,10 @@ public class ShopController : MonoBehaviour
         GameObject item = Instantiate(PrefabItem);
         item.transform.SetParent(BaseItem);
         item.GetComponent<ItemShop>().SetID(id, name, price, s, this);
+    }
+
+    public void SetBall(int id) {
+        BallReview.SetTexture(id.ToString(), TextureBall[id]);
     }
 
     public void OnClickMenu()

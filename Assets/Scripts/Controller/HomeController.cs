@@ -13,7 +13,7 @@ public class HomeController : MonoBehaviour
     public GameObject UIGame;
     void Start()
     {
-        SkyboxController.instance.ChangeSkybox();
+        // SkyboxController.instance.ChangeSkybox();
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
         if (StaticData.loadding)
         {
