@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
+        SkyboxController.instance.ChangeSkybox();
         coin = PlayerPrefs.GetInt("Coin", 0);
         uiController.UpdateTextCoin(coin);
         uiController.SetAmountBall(AmountBall);
