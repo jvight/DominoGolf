@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
         uiController.SetAmountBall(AmountBall);
         Time.timeScale = 1;
     }
-    
+
     public void CreateDone()
     {
         for (int i = 0; i < PlankParent.childCount; i++)
@@ -61,12 +61,9 @@ public class GameController : MonoBehaviour
             character.Idle();
             // Time.timeScale = 1;
             ChangeTime(1);
-            if (AmountBall > 0)
-            {
-                golf.ReBack();
-                character.Veldle();
-            }
             CheckEnd();
+
+
         }, 2f));
     }
 
@@ -90,6 +87,10 @@ public class GameController : MonoBehaviour
                if (AmountBall > 0)
                {
                    jsonReader.Read();
+
+                   golf.ReBack();
+                   character.Veldle();
+
 
                }
                else
@@ -122,6 +123,11 @@ public class GameController : MonoBehaviour
             if (AmountBall <= 0)
             {
                 GameLose();
+            }
+            else
+            {
+                golf.ReBack();
+                character.Veldle();
             }
         }
     }

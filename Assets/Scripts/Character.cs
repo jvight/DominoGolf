@@ -26,17 +26,24 @@ public class Character : MonoBehaviour
         // }, 4f));
     }
 
-    public void Veldle() {
+    public void Veldle()
+    {
         anim.SetTrigger("Veldle");
     }
 
     public void Idle()
     {
-         anim.SetTrigger("Idle");
+        anim.SetTrigger("Idle");
         // anim.SetBool("IsDrive", false);
     }
-    public void Victory(){
+    public void Victory()
+    {
         anim.SetTrigger("Victory");
+        StartCoroutine(DelayFunc(() =>
+        {
+            stick.SetActive(false);
+
+        },0.5f));
     }
     public void SetTimeAnim(float time)
     {
