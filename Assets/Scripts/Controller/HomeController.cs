@@ -45,19 +45,27 @@ public class HomeController : MonoBehaviour
     public void OnClickSetting()
     {
         AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
-        blackScreen.gameObject.SetActive(true);
+        // blackScreen.gameObject.SetActive(true);
         SettingPopup.SetActive(true);
-        SettingPopup.transform.DOScale(1, 0.5f);
+        // SettingPopup.transform.DOScale(1, 0.5f);
     }
 
     public void OnClickXSetting()
     {
         AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
-        blackScreen.gameObject.SetActive(false);
-        SettingPopup.transform.DOScale(0, 0.5f).OnComplete(() =>
-        {
+        // blackScreen.gameObject.SetActive(false);
+        // SettingPopup.transform.DOScale(0, 0.5f).OnComplete(() =>
+        // {
+        // });
             SettingPopup.SetActive(false);
-        });
+    }
+
+    public void OnClickShop() {
+
+    }
+
+    public void OnClickBuyNoAds() {
+        
     }
 
     public void ClickStart()
