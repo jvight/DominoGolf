@@ -11,6 +11,7 @@ public class HomeController : MonoBehaviour
     public Image blackScreen;
     public GameObject SettingPopup;
     public GameObject UIGame;
+    public GameObject ShopPopup;
     void Start()
     {
         // SkyboxController.instance.ChangeSkybox();
@@ -62,7 +63,7 @@ public class HomeController : MonoBehaviour
     }
 
     public void OnClickShop() {
-
+        ShopPopup.SetActive(true);
     }
 
     public void OnClickBuyNoAds() {

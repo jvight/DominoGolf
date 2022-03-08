@@ -9,7 +9,7 @@ public class ShopController : MonoBehaviour
     public GameObject PrefabItem;
     public Transform BaseItem;
     public Text TextCoin;
-    public Material BallReview;
+    public MeshRenderer BallReview;
     public Texture2D[] TextureBall;
     [System.Serializable]
     public class Item
@@ -63,8 +63,9 @@ public class ShopController : MonoBehaviour
         item.GetComponent<ItemShop>().SetID(id, name, price, s, this);
     }
 
-    public void SetBall(int id) {
-        BallReview.SetTexture(id.ToString(), TextureBall[id]);
+    public void SetBall(int id)
+    {
+        BallReview.material.mainTexture = TextureBall[id];
     }
 
     public void OnClickMenu()
@@ -75,6 +76,6 @@ public class ShopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        BallReview.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
     }
 }
