@@ -150,6 +150,7 @@ public class GameController : MonoBehaviour
 
     public void GameWin()
     {
+        character.Victory();
         uiController.AddScore();
         StartCoroutine(DelayFunc(() =>
         {
