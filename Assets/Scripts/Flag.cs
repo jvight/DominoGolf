@@ -8,14 +8,14 @@ public class Flag : MonoBehaviour
     // public Transform flag;
     public Material yellowFlag;
     public Material redFlag;
-    public MeshRenderer meshFlag;
+    public SkinnedMeshRenderer meshFlag;
     public GameObject particle;
-    Animation anim;
+    public Animator anim;
     public bool isFly = false;
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.GetComponent<Animation>();
+        
     }
 
     // Update is called once per frame
@@ -27,20 +27,28 @@ public class Flag : MonoBehaviour
     public void ChangeColor()
     {
         meshFlag.material = yellowFlag;
+        Debug.Log( meshFlag.material);
+        Debug.Log(" okkkkkkkkkkkkkkmeshFlag.material");
+
     }
 
     void Fly()
     {
+        ChangeColor();
         AudioController.instance.PlayAudio(AudioType.Flag, 1f);
         var main = particle.GetComponent<ParticleSystem>().main;
         main.simulationSpeed = 0.5f;
         particle.SetActive(true);
         this.GetComponent<BoxCollider>().enabled = false;
         isFly = true;
-        anim.Play("Flag");
+        anim.SetTrigger("Collided");
+        // anim.Play("Flag");
         // GameController.Instance.UpdateFlagFly();
         // flag.DOMoveY(flag.position.y + 1f, 1f);
         // flag.GetComponent<MeshRenderer>().material.DOFade(0, 1f);
+    }
+    public void DoneAnim(){
+        anim.SetTrigger("DoneAnim");
     }
     void OnTriggerEnter(Collider other)
     {
@@ -49,6 +57,7 @@ public class Flag : MonoBehaviour
         // }
         Fly();
     }
+
     public void ResetFlag(){
         isFly=false;
         meshFlag.material=redFlag;
