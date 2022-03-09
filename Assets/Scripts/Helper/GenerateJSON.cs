@@ -113,7 +113,7 @@ public class GenerateJSON : MonoBehaviour
         }
         if (tutHand.gameObject.active)
         {
-            TutHand hand = new TutHand();
+            TutHandData hand = new TutHandData();
             hand.pos = tutHand.position.x.ToString() + "," + tutHand.position.y.ToString() + "," + tutHand.position.z.ToString();
             hand.angle = tutHand.eulerAngles.x.ToString() + "," + tutHand.eulerAngles.y.ToString() + "," + tutHand.eulerAngles.z.ToString();
             hand.scale = tutHand.localScale.x.ToString() + "," + tutHand.localScale.y.ToString() + "," + tutHand.localScale.z.ToString();
@@ -159,7 +159,7 @@ public class ObjData
     public bool isRotate;
     public string angleEnd;
 }
-public class TutHand
+public class TutHandData
 {
     public string pos;
     public string angle;
