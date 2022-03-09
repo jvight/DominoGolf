@@ -167,7 +167,7 @@ public class IronSourceAdsController : MonoBehaviour, IAdsInterface
     }
     public void ShowBanner()
     {
-        IronSource.Agent.loadBanner(IronSourceBannerSize.SMART, IronSourceBannerPosition.TOP);
+        IronSource.Agent.loadBanner(IronSourceBannerSize.SMART, IronSourceBannerPosition.BOTTOM);
         IronSource.Agent.displayBanner();
     }
     public void HideBanner()
