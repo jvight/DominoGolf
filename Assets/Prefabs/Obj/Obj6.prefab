@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5434477729901789108}
   - component: {fileID: 8082793251616044813}
   - component: {fileID: 9143387770084817980}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface7
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 9175506849932319564}
   - component: {fileID: 8863054662494068230}
   - component: {fileID: 5099761620908424305}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface1
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3796281371519051768}
   - component: {fileID: 8822046607139599664}
   - component: {fileID: 3987887929917107105}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface3
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5076660795003939686}
   - component: {fileID: 5514910021637470904}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Obj6
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 2195765958298006446}
   - component: {fileID: 8957818271601056272}
   - component: {fileID: 5739605703481976756}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface2
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 5713565616669168410}
   - component: {fileID: 40733449540801853}
   - component: {fileID: 8966885658578516482}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface4
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8320684159790612092}
   - component: {fileID: 1911810349651689127}
   - component: {fileID: 4309795503649343676}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface6
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 4785041769518749962}
   - component: {fileID: 5889433460371472635}
   - component: {fileID: 8016539211752410892}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface8
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 3256823056354893848}
   - component: {fileID: 7449251369693267745}
   - component: {fileID: 8994935348248320466}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface5
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dace1b47c6835614fbe2c84d7575f020, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dace1b47c6835614fbe2c84d7575f020, type: 3}
       propertyPath: m_IsActive
