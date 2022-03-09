@@ -12,6 +12,7 @@ public class JSONReader : MonoBehaviour
     public Transform PlankParent;
     public Transform FlagParent;
     public Transform ObjParent;
+    public Transform tutHand;
     public TMP_Text text;
     public GameObject prefabPlank;
     public GameObject prefabFlag;
@@ -50,6 +51,12 @@ public class JSONReader : MonoBehaviour
         public bool isRotate;
         public string angleEnd;
     }
+    public class TutHand
+    {
+        public string pos;
+        public string angle;
+        public string scale;
+    }
 
     [System.Serializable]
     public class ObjectList
@@ -62,6 +69,7 @@ public class JSONReader : MonoBehaviour
         public PlankData[] plank;
         public FlagData[] flag;
         public ObjectData[] obj;
+        public TutHand hand;
     }
     public ObjectList objectList = new ObjectList();
     // Start is called before the first frame update
@@ -155,7 +163,21 @@ public class JSONReader : MonoBehaviour
                 obj.GetComponent<ObjMap>().Rotate();
             }
         }
-        GameController.Instance.CreateDone();
+        Debug.Log(levelData.hand);
+        if(levelData.hand!=null){
+            tutHand.gameObject.SetActive(true);
+            string[] strPos = levelData.hand.pos.Split(char.Parse(","));
+            Vector3 pos = new Vector3(float.Parse(strPos[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[2], CultureInfo.InvariantCulture.NumberFormat));
+            tutHand.position = pos;
+            string[] strAngle = levelData.hand.angle.Split(char.Parse(","));
+            Vector3 angle = new Vector3(float.Parse(strAngle[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strAngle[2], CultureInfo.InvariantCulture.NumberFormat));
+            tutHand.eulerAngles = angle;
+            string[] strScale = levelData.hand.scale.Split(char.Parse(","));
+            Vector3 scale = new Vector3(float.Parse(strScale[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strScale[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strScale[2], CultureInfo.InvariantCulture.NumberFormat));
+            tutHand.localScale = scale;
+
+        }
+            GameController.Instance.CreateDone();
     }
     // Update is called once per frame
     void Update()
