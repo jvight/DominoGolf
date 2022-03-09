@@ -14,6 +14,7 @@ public class HomeController : MonoBehaviour
     public GameObject UIGame;
     public GameObject ShopPopup;
     public GameObject ButtonNoAds;
+    public Transform tutHand;
     void Start()
     {
         CheckNoAds();
@@ -90,6 +91,9 @@ public class HomeController : MonoBehaviour
 
     public void ClickStart()
     {
+        if(StaticData.level==14){
+            tutHand.gameObject.SetActive(true);
+        }
         AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
         Invoke("GameStart", 0.1f);
         // SceneManager.LoadScene("LoadScene");

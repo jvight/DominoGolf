@@ -11,7 +11,7 @@ public class Golf : MonoBehaviour
 {
     public Character character;
     public DrawTrajectory drawTrajectory;
-    public GameObject trailFx; 
+    public GameObject trailFx;
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
     private Rigidbody rb;
@@ -32,12 +32,18 @@ public class Golf : MonoBehaviour
 
     public void ReBack()
     {
+        trailFx.SetActive(false);
         character.SetTimeAnim(1);
         Debug.Log(oldPos);
         transform.position = oldPos;
         // transform.eulerAngles = oldAngle;
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
+        StartCoroutine(DelayFunc(() =>
+        {
+            trailFx.SetActive(true);
+
+        }, 0.5f));
         gameObject.SetActive(true);
         isShoot = false;
     }
