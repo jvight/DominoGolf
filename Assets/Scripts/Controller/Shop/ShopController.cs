@@ -135,6 +135,17 @@ public class ShopController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void OnClickWatch()
+    {
+        FindObjectOfType<IronSourceAdsController>().ShowVideoAds(() =>
+        {
+        }, () =>
+        {
+            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + 500);
+            UpdateCoin();
+        });
+    }
+
     // Update is called once per frame
     void Update()
     {
