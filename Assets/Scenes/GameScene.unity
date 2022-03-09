@@ -506,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 255702407}
   drawTrajectory: {fileID: 169144360}
+  trailFx: {fileID: 0}
 --- !u!54 &71200981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3681,6 +3682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 255702407}
   drawTrajectory: {fileID: 169144360}
+  trailFx: {fileID: 0}
 --- !u!1 &651304597
 GameObject:
   m_ObjectHideFlags: 0
@@ -9744,8 +9746,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1402585358}
         m_TargetAssemblyTypeName: HomeController, Assembly-CSharp
-        m_MethodName: OnClickBuyNoAds
-        m_Mode: 1
+        m_MethodName: OnPurchaseCompele
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9756,7 +9758,19 @@ MonoBehaviour:
         m_CallState: 2
   onPurchaseFailed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1402585358}
+        m_TargetAssemblyTypeName: HomeController, Assembly-CSharp
+        m_MethodName: OnPurchaseFailed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
   priceText: {fileID: 0}
