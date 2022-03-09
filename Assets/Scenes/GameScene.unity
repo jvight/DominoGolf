@@ -2241,7 +2241,7 @@ GameObject:
   - component: {fileID: 382042237}
   - component: {fileID: 382042239}
   m_Layer: 5
-  m_Name: BtnStart
+  m_Name: TapToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2260,7 +2260,7 @@ RectTransform:
   m_Children:
   - {fileID: 883790078}
   m_Father: {fileID: 1883940291}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7091,7 +7091,7 @@ GameObject:
   - component: {fileID: 1187796140}
   - component: {fileID: 1187796139}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BtnStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7109,7 +7109,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1883940291}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -10787,8 +10787,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1187796138}
   - {fileID: 382042236}
+  - {fileID: 1187796138}
   - {fileID: 1732555728}
   - {fileID: 2044529047}
   - {fileID: 474101913}

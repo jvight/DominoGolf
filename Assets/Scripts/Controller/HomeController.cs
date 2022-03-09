@@ -80,7 +80,7 @@ public class HomeController : MonoBehaviour
     public void OnPurchaseCompele(Product product)
     {
         PlayerPrefs.SetInt("NoAds", 1);
-        CheckNoAds();
+        Invoke("CheckNoAds", 0.1f);
     }
     
     public void OnPurchaseFailed(Product product, PurchaseFailureReason reason)
