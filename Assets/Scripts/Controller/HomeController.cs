@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Purchasing;
 
 public class HomeController : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class HomeController : MonoBehaviour
     public GameObject SettingPopup;
     public GameObject UIGame;
     public GameObject ShopPopup;
+    public GameObject ButtonNoAds;
     void Start()
     {
+        CheckNoAds();
         // SkyboxController.instance.ChangeSkybox();
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
         // AdsController.Instance.ShowBanner();
@@ -68,9 +71,21 @@ public class HomeController : MonoBehaviour
         ShopPopup.SetActive(true);
     }
 
-    public void OnClickBuyNoAds()
-    {
+    public void CheckNoAds() {
+        if (PlayerPrefs.GetInt("NoAds", 0) == 1) {
+            ButtonNoAds.SetActive(false);
+        }
+    }
 
+    public void OnPurchaseCompele(Product product)
+    {
+        PlayerPrefs.SetInt("NoAds", 1);
+        CheckNoAds();
+    }
+    
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason reason)
+    {
+        Debug.Log(product.definition.id + "failed because" + reason);
     }
 
     public void ClickStart()

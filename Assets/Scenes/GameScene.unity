@@ -7980,6 +7980,7 @@ MonoBehaviour:
   SettingPopup: {fileID: 198693047}
   UIGame: {fileID: 2019458445}
   ShopPopup: {fileID: 1393379542}
+  ButtonNoAds: {fileID: 1732555727}
 --- !u!1 &1455981857
 GameObject:
   m_ObjectHideFlags: 0
@@ -9611,6 +9612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732555728}
   - component: {fileID: 1732555731}
+  - component: {fileID: 1732555732}
   - component: {fileID: 1732555730}
   - component: {fileID: 1732555729}
   m_Layer: 5
@@ -9722,6 +9724,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732555727}
   m_CullTransparentMesh: 1
+--- !u!114 &1732555732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732555727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: com.mobigreen.domino.golf.removead
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1402585358}
+        m_TargetAssemblyTypeName: HomeController, Assembly-CSharp
+        m_MethodName: OnClickBuyNoAds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &1743798475
 GameObject:
   m_ObjectHideFlags: 0
