@@ -13,6 +13,7 @@ public class ShopController : MonoBehaviour
     public MeshRenderer BallReview;
     public Texture2D[] TextureBall;
     public Sprite[] SprBall;
+    public Text TextPage;
 
     int idPage = 0;
     bool canClick = true;
@@ -70,6 +71,7 @@ public class ShopController : MonoBehaviour
         {
             canClick = true;
         });
+        UpdateTextPage();
     }
 
     public void OnClickBack()
@@ -81,6 +83,12 @@ public class ShopController : MonoBehaviour
         {
             canClick = true;
         });
+        UpdateTextPage();
+    }
+
+    public void UpdateTextPage()
+    {
+        TextPage.text = (idPage + 1).ToString() + " OF " + (maxPage + 1).ToString();
     }
 
     public void UpdateCoin()
@@ -119,6 +127,7 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
+        GameController.Instance.SetBallTexture();
     }
 
     public void OnClickMenu()

@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public int AmountBall = 4;
     public bool GameDone = false;
     public JSONReader jsonReader;
+    public Texture2D[] TextureBall;
     int coin = 0;
     void Awake()
     {
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
 
     public void CreateDone()
     {
+        SetBallTexture();
         for (int i = 0; i < PlankParent.childCount; i++)
         {
             listPlank.Add(PlankParent.GetChild(i).GetComponent<Plank>());
@@ -45,6 +47,10 @@ public class GameController : MonoBehaviour
             listFlag.Add(FlagParent.GetChild(i).GetComponent<Flag>());
         }
         // uiController.UpdateAmountFlag(listFlag.Count);
+    }
+
+    public void SetBallTexture() {
+        golf.GetComponent<MeshRenderer>().material.mainTexture = TextureBall[PlayerPrefs.GetInt("BallUse", 0)];
     }
 
     public void PlayGolf()
