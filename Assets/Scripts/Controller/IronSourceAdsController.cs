@@ -127,7 +127,7 @@ public class IronSourceAdsController : MonoBehaviour, IAdsInterface
     void Start()
     {
 #if UNITY_ANDROID
-        appKey = "13b7cc601";
+        appKey = "13c1e9481";
 #elif UNITY_IOS
        appKey= "13b7cc601";
 #endif
