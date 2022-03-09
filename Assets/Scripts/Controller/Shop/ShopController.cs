@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ShopController : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class ShopController : MonoBehaviour
     public Text TextCoin;
     public MeshRenderer BallReview;
     public Texture2D[] TextureBall;
+    public Sprite[] SprBall;
+
+    int idPage = 0;
+    bool canClick = true;
+    public int maxPage;
     [System.Serializable]
     public class Item
     {
@@ -28,6 +34,7 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        BallReview.material.mainTexture = TextureBall[PlayerPrefs.GetInt("BallUse", 0)];
         listItem = JsonUtility.FromJson<ListItem>(textJSON.text);
         // List<int> list = DataController.GetArrayForKey("Items");
         for (int i = 0; i < listItem.Ball.Length; i++)
@@ -46,9 +53,31 @@ public class ShopController : MonoBehaviour
                     s = 2;
                 }
             }
-            OnCreateItem(item.ID, item.Name, item.Price, s);
+            OnCreateItem(item.ID, item.Name, item.Price, s, SprBall[item.ID]);
         }
         Debug.Log(listItem.Ball);
+    }
+
+    public void OnClickNext()
+    {
+        if (idPage == maxPage || !canClick) { return; }
+        canClick = false;
+        idPage++;
+        BaseItem.DOLocalMoveX(BaseItem.localPosition.x - 340, 0.5f).OnComplete(() =>
+        {
+            canClick = true;
+        });
+    }
+
+    public void OnClickBack()
+    {
+        if (idPage == 0 || !canClick) { return; }
+        canClick = false;
+        idPage--;
+        BaseItem.DOLocalMoveX(BaseItem.localPosition.x + 340, 0.5f).OnComplete(() =>
+        {
+            canClick = true;
+        });
     }
 
     public void UpdateCoin()
@@ -56,16 +85,28 @@ public class ShopController : MonoBehaviour
         TextCoin.text = PlayerPrefs.GetInt("Coin", 0).ToString();
     }
 
-    void OnCreateItem(int id, string name, int price, int s)
+    void OnCreateItem(int id, string name, int price, int s, Sprite spr)
     {
         GameObject item = Instantiate(PrefabItem);
         item.transform.SetParent(BaseItem);
-        item.GetComponent<ItemShop>().SetID(id, name, price, s, this);
+        item.GetComponent<ItemShop>().SetID(id, name, price, s, this, spr);
     }
 
     public void SetBall(int id)
     {
         BallReview.material.mainTexture = TextureBall[id];
+        // for (int i = 0; i < BaseItem.childCount; i++)
+        // {
+        //     ItemShop item = BaseItem.GetChild(i).GetComponent<ItemShop>();
+        //     if (id == i)
+        //     {
+        //         item.BGChoose.SetActive(true);
+        //     }
+        //     else
+        //     {
+        //         item.BGChoose.SetActive(false);
+        //     }
+        // }
     }
 
     public void OnClickMenu()

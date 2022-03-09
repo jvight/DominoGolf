@@ -10,6 +10,7 @@ public class ItemShop : MonoBehaviour
     public GameObject Btn;
     public Text TextButton;
     public Sprite[] sprBtns;
+    public GameObject BGChoose;
     int ID = 0;
     string Name;
     int Price = 0;
@@ -21,13 +22,14 @@ public class ItemShop : MonoBehaviour
 
     }
 
-    public void SetID(int id, string name, int price, int state, ShopController shop)
+    public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr)
     {
         this.ID = id;
         this.Name = name;
         this.Price = price;
         this.State = state;
         this.Shop = shop;
+        this.ImgReview.sprite = spr;
         TextButton.text = Price.ToString();
         TextName.text = name;
         CheckState();
@@ -75,6 +77,7 @@ public class ItemShop : MonoBehaviour
                 TextButton.text = "EQUIP";
                 break;
             case 2:
+                BGChoose.SetActive(true);
                 Btn.GetComponent<Image>().sprite = sprBtns[1];
                 TextButton.transform.localPosition = new Vector3(0, TextButton.transform.localPosition.y);
                 Btn.transform.GetChild(1).gameObject.SetActive(false);
@@ -83,7 +86,8 @@ public class ItemShop : MonoBehaviour
         }
     }
 
-    public void OnClickChoose() {
+    public void OnClickChoose()
+    {
         Debug.Log(this.ID);
         Shop.SetBall(this.ID);
     }
