@@ -34,6 +34,7 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("Ball0", 1);
         BallReview.material.mainTexture = TextureBall[PlayerPrefs.GetInt("BallUse", 0)];
         listItem = JsonUtility.FromJson<ListItem>(textJSON.text);
         // List<int> list = DataController.GetArrayForKey("Items");
