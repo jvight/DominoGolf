@@ -16,6 +16,7 @@ public class HomeController : MonoBehaviour
     {
         // SkyboxController.instance.ChangeSkybox();
         FindObjectOfType<IronSourceAdsController>().ShowBanner();
+        // AdsController.Instance.ShowBanner();
         if (StaticData.loadding)
         {
             StaticData.loadding = false;
@@ -59,15 +60,17 @@ public class HomeController : MonoBehaviour
         // SettingPopup.transform.DOScale(0, 0.5f).OnComplete(() =>
         // {
         // });
-            SettingPopup.SetActive(false);
+        SettingPopup.SetActive(false);
     }
 
-    public void OnClickShop() {
+    public void OnClickShop()
+    {
         ShopPopup.SetActive(true);
     }
 
-    public void OnClickBuyNoAds() {
-        
+    public void OnClickBuyNoAds()
+    {
+
     }
 
     public void ClickStart()

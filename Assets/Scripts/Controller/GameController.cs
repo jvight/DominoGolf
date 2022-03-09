@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
+        // AdsController.Instance.LoadInterstitial();
         SkyboxController.instance.ChangeSkybox();
         coin = PlayerPrefs.GetInt("Coin", 0);
         uiController.UpdateTextCoin(coin);
@@ -68,8 +69,6 @@ public class GameController : MonoBehaviour
             // Time.timeScale = 1;
             ChangeTime(1);
             CheckEnd();
-
-
         }, 2f));
     }
 
@@ -166,6 +165,9 @@ public class GameController : MonoBehaviour
         uiController.AddScore();
         StartCoroutine(DelayFunc(() =>
         {
+            if (StaticData.level >= 4) {
+                // AdsController.Instance.ShowInterstitial();
+            }
             int numOff = PlayerPrefs.GetInt("RateOff", 0);
             Debug.Log(numOff);
             if (StaticData.level == 2 && numOff == 0 || StaticData.level == 9 && numOff == 1 || StaticData.level == 14 && numOff == 2)

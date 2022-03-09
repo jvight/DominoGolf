@@ -131,14 +131,14 @@ public class UIController : MonoBehaviour
 
     public void OnClickReward()
     {
-        FindObjectOfType<IronSourceAdsController>().ShowVideoAds(() =>
-        {
-        }, () =>
-        {
-            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + GameController.Instance.PlankParent.childCount);
-            UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
-            textCoinGW.text = "+" + (GameController.Instance.PlankParent.childCount * 2).ToString();
-        });
+        // AdsController.Instance.ShowVideoAds(() =>
+        // {
+        // }, () =>
+        // {
+        //     PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) + GameController.Instance.PlankParent.childCount);
+        //     UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
+        //     textCoinGW.text = "+" + (GameController.Instance.PlankParent.childCount * 2).ToString();
+        // });
     }
     IEnumerator DelayFunc(Action call, float time)
     {

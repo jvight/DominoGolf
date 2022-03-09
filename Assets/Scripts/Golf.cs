@@ -142,6 +142,7 @@ public class Golf : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "Plank")
         {
+            AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
             StartCoroutine(DelayFunc(() =>
             {
                 gameObject.SetActive(false);
@@ -149,7 +150,6 @@ public class Golf : MonoBehaviour
             // Time.timeScale = 2.5f;
             GameController.Instance.ChangeTime(2.5f);
             // character.SetTimeAnim(0.5f);
-            AudioController.instance.PlayAudio(AudioType.GolfHitOther, 1f);
         }
         else if (collisionInfo.gameObject.tag == "Border" || collisionInfo.gameObject.tag == "Object")
         {

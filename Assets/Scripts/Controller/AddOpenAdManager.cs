@@ -67,6 +67,7 @@ public class AppOpenAdManager
         {
             return;
         }
+
         ad.OnAdDidDismissFullScreenContent += HandleAdDidDismissFullScreenContent;
         ad.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresentFullScreenContent;
         ad.OnAdDidPresentFullScreenContent += HandleAdDidPresentFullScreenContent;

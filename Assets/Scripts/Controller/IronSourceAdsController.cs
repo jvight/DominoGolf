@@ -167,7 +167,7 @@ public class IronSourceAdsController : MonoBehaviour, IAdsInterface
     }
     public void ShowBanner()
     {
-        IronSource.Agent.loadBanner(IronSourceBannerSize.SMART, IronSourceBannerPosition.BOTTOM);
+        IronSource.Agent.loadBanner(IronSourceBannerSize.SMART, IronSourceBannerPosition.TOP);
         IronSource.Agent.displayBanner();
     }
     public void HideBanner()
@@ -228,7 +228,7 @@ public class IronSourceAdsController : MonoBehaviour, IAdsInterface
 #if !UNITY_EDITOR
     private void Update()
     {
-        if (Time.time - timeStamp > 15)
+        if (Time.time - timeStamp > 60)
         {
             timeStamp = Time.time;
             if (!IsInterstitialAdsReady())
