@@ -1,0 +1,20 @@
+
+tuthand.png
+size: 180,108
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hand
+  rotate: false
+  xy: 108, 29
+  size: 69, 77
+  orig: 69, 77
+  offset: 0, 0
+  index: -1
+ring
+  rotate: false
+  xy: 2, 2
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
