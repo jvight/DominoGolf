@@ -65,7 +65,7 @@ public class Golf : MonoBehaviour
             StartCoroutine(DelayFunc(() =>
             {
                 canTouch = true;
-            }, 0.5f));
+            }, 0.3f));
             return;
         }
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch || !StaticData.game_start) { return; }
