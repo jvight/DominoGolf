@@ -13,6 +13,7 @@ public class JSONReader : MonoBehaviour
     public Transform FlagParent;
     public Transform ObjParent;
     public Transform tutHand;
+    public GameObject BG;
     public TMP_Text text;
     public GameObject prefabPlank;
     public GameObject prefabFlag;
@@ -164,9 +165,14 @@ public class JSONReader : MonoBehaviour
                 obj.GetComponent<ObjMap>().Rotate();
             }
         }
-        // Debug.Log(levelData.hand.Length);
-        if(levelData.hand!=null){
-            tutHand.gameObject.SetActive(true);
+        Debug.Log(levelData.hand.pos);
+        if (levelData.hand.pos != null)
+        {
+            if (BG.active == false&&StaticData.level==14)
+            {
+                tutHand.gameObject.SetActive(true);
+            }
+            
             string[] strPos = levelData.hand.pos.Split(char.Parse(","));
             Vector3 pos = new Vector3(float.Parse(strPos[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(strPos[2], CultureInfo.InvariantCulture.NumberFormat));
             tutHand.position = pos;
@@ -178,7 +184,7 @@ public class JSONReader : MonoBehaviour
             tutHand.localScale = scale;
 
         }
-            GameController.Instance.CreateDone();
+        GameController.Instance.CreateDone();
     }
     // Update is called once per frame
     void Update()
