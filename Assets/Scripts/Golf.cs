@@ -11,6 +11,7 @@ public class Golf : MonoBehaviour
 {
     public Character character;
     public DrawTrajectory drawTrajectory;
+    public GameObject trailFx; 
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
     private Rigidbody rb;
