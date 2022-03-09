@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3338905, g: 0.5776878, b: 0.8422593, a: 1}
+  m_IndirectSpecularColor: {r: 0.33388832, g: 0.5776856, b: 0.84225255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 255702407}
   drawTrajectory: {fileID: 169144360}
-  trailFx: {fileID: 0}
+  trailFx: {fileID: 2125708692}
 --- !u!54 &71200981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7983,6 +7983,7 @@ MonoBehaviour:
   UIGame: {fileID: 2019458445}
   ShopPopup: {fileID: 1393379542}
   ButtonNoAds: {fileID: 1732555727}
+  tutHand: {fileID: 1671615911}
 --- !u!1 &1455981857
 GameObject:
   m_ObjectHideFlags: 0
@@ -9002,6 +9003,7 @@ MonoBehaviour:
   FlagParent: {fileID: 305284600}
   ObjParent: {fileID: 1666932370}
   tutHand: {fileID: 1671615911}
+  BG: {fileID: 1883940290}
   text: {fileID: 1730850994}
   prefabPlank: {fileID: 2164692534609712211, guid: ac8b407abf806294383e8735e5e5554f, type: 3}
   prefabFlag: {fileID: 8801016615324702954, guid: aa7aefdef03f746498454139035914a0, type: 3}
@@ -12192,6 +12194,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122982460}
   m_CullTransparentMesh: 1
+--- !u!1 &2125708692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8244485645800054396, guid: 13cd6febc805e204c9186d1e97d8ce67, type: 3}
+  m_PrefabInstance: {fileID: 769124632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126628537
 GameObject:
   m_ObjectHideFlags: 0
