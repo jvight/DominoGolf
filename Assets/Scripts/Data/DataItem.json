@@ -43,12 +43,12 @@
         {
             "ID": 8,
             "Name": "Item 8",
-            "Price": 9999
+            "Price": 6666
         },
         {
             "ID": 9,
             "Name": "Item 9",
-            "Price": 500
+            "Price": 9999
         }
     ]
 }

@@ -34,6 +34,8 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        UpdateCoin();
+        PlayerPrefs.SetInt("Coin", 5000);
         PlayerPrefs.SetInt("Ball0", 1);
         BallReview.material.mainTexture = TextureBall[PlayerPrefs.GetInt("BallUse", 0)];
         listItem = JsonUtility.FromJson<ListItem>(textJSON.text);
@@ -49,7 +51,7 @@ public class ShopController : MonoBehaviour
             if (PlayerPrefs.GetInt("Ball" + item.ID.ToString(), 0) == 1)
             {
                 s = 1;
-                if (PlayerPrefs.GetInt("BallUse", -1) == item.ID)
+                if (PlayerPrefs.GetInt("BallUse", 0) == item.ID)
                 {
                     s = 2;
                 }
@@ -96,18 +98,27 @@ public class ShopController : MonoBehaviour
     public void SetBall(int id)
     {
         BallReview.material.mainTexture = TextureBall[id];
-        // for (int i = 0; i < BaseItem.childCount; i++)
-        // {
-        //     ItemShop item = BaseItem.GetChild(i).GetComponent<ItemShop>();
-        //     if (id == i)
-        //     {
-        //         item.BGChoose.SetActive(true);
-        //     }
-        //     else
-        //     {
-        //         item.BGChoose.SetActive(false);
-        //     }
-        // }
+    }
+
+    public void CheckItem()
+    {
+        for (int i = 0; i < BaseItem.childCount; i++)
+        {
+            ItemShop item = BaseItem.GetChild(i).GetComponent<ItemShop>();
+            if (i == PlayerPrefs.GetInt("BallUse", 0))
+            {
+                item.BGChoose.SetActive(true);
+            }
+            else
+            {
+                item.BGChoose.SetActive(false);
+                if (PlayerPrefs.GetInt("Ball" + i.ToString(), 0) == 1)
+                {
+                    item.State = 1;
+                    item.CheckState();
+                }
+            }
+        }
     }
 
     public void OnClickMenu()

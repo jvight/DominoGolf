@@ -14,7 +14,7 @@ public class ItemShop : MonoBehaviour
     int ID = 0;
     string Name;
     int Price = 0;
-    int State = 0;
+    public int State = 0;
     ShopController Shop;
     // Start is called before the first frame update
     void Start()
@@ -54,8 +54,9 @@ public class ItemShop : MonoBehaviour
                 }
                 break;
             case 1:
-                PlayerPrefs.SetInt("BallUse", this.ID);
                 State = 2;
+                PlayerPrefs.SetInt("BallUse", this.ID);
+                Shop.CheckItem();
                 break;
             case 2:
                 break;
