@@ -39,12 +39,13 @@ public class Golf : MonoBehaviour
         // transform.eulerAngles = oldAngle;
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
+        gameObject.SetActive(true);
+
         StartCoroutine(DelayFunc(() =>
         {
             trailFx.SetActive(true);
 
         }, 0.5f));
-        gameObject.SetActive(true);
         isShoot = false;
     }
 
