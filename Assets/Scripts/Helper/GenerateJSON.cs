@@ -9,6 +9,7 @@ public class GenerateJSON : MonoBehaviour
     public Transform PlankParent;
     public Transform FlagParent;
     public Transform ObjectParent;
+    public Transform tutHand;
 
     public void SaveIntoJson()
     {
@@ -65,7 +66,7 @@ public class GenerateJSON : MonoBehaviour
         }
         if (ObjectParent.childCount == 0)
         {
-              potion += "\n \"obj\": []";
+            potion += "\n \"obj\": []";
         }
         else
         {
@@ -80,11 +81,12 @@ public class GenerateJSON : MonoBehaviour
                 obj.isRotate = ObjectParent.GetChild(i).GetComponent<ObjMap>().isRotate;
                 obj.posEnd = ObjectParent.GetChild(i).GetComponent<ObjMap>().posEnd.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().posEnd.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().posEnd.z.ToString();
                 obj.angleEnd = ObjectParent.GetChild(i).GetComponent<ObjMap>().angleEnd.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().angleEnd.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().angleEnd.z.ToString();
-                if(ObjectParent.GetChild(i).GetComponent<ObjMap>().isX){
-                    obj.isX=true;
-                    obj.xPos=ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.z.ToString();
-                    obj.xAngle=ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.z.ToString();
-                    obj.xScale=ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.z.ToString();
+                if (ObjectParent.GetChild(i).GetComponent<ObjMap>().isX)
+                {
+                    obj.isX = true;
+                    obj.xPos = ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.position.z.ToString();
+                    obj.xAngle = ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.eulerAngles.z.ToString();
+                    obj.xScale = ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.x.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.y.ToString() + "," + ObjectParent.GetChild(i).GetComponent<ObjMap>().xMark.localScale.z.ToString();
                 }
                 if (i == 0)
                 {
@@ -108,6 +110,15 @@ public class GenerateJSON : MonoBehaviour
                     potion += JsonUtility.ToJson(obj) + ",";
                 }
             }
+        }
+        if (tutHand.gameObject.active)
+        {
+            TutHand hand = new TutHand();
+            hand.pos = tutHand.position.x.ToString() + "," + tutHand.position.y.ToString() + "," + tutHand.position.z.ToString();
+            hand.angle = tutHand.eulerAngles.x.ToString() + "," + tutHand.eulerAngles.y.ToString() + "," + tutHand.eulerAngles.z.ToString();
+            hand.scale = tutHand.localScale.x.ToString() + "," + tutHand.localScale.y.ToString() + "," + tutHand.localScale.z.ToString();
+            potion += "\n \"hand\": ";
+            potion += JsonUtility.ToJson(hand);
         }
         System.IO.File.WriteAllText(Application.persistentDataPath + "/PotionData.json", potion);
         Debug.Log(potion);
@@ -147,4 +158,10 @@ public class ObjData
     public string xScale;
     public bool isRotate;
     public string angleEnd;
+}
+public class TutHand
+{
+    public string pos;
+    public string angle;
+    public string scale;
 }
