@@ -51,7 +51,8 @@ public class JSONReader : MonoBehaviour
         public bool isRotate;
         public string angleEnd;
     }
-    public class TutHand
+    [System.Serializable]
+    public class Hand
     {
         public string pos;
         public string angle;
@@ -69,7 +70,7 @@ public class JSONReader : MonoBehaviour
         public PlankData[] plank;
         public FlagData[] flag;
         public ObjectData[] obj;
-        public TutHand hand;
+        public Hand hand;
     }
     public ObjectList objectList = new ObjectList();
     // Start is called before the first frame update
@@ -79,11 +80,11 @@ public class JSONReader : MonoBehaviour
         Read();
     }
 
-    public void Read()
+    public async void Read()
     {
         objectList = JsonUtility.FromJson<ObjectList>(textJSON.text);
         Level levelData = objectList.level[StaticData.level];
-
+        Debug.Log(levelData.hand);
         for (int i = 0; i < levelData.plank.Length; i++)
         {
             if (i >= PlankParent.childCount)
@@ -163,7 +164,7 @@ public class JSONReader : MonoBehaviour
                 obj.GetComponent<ObjMap>().Rotate();
             }
         }
-        Debug.Log(levelData.hand);
+        // Debug.Log(levelData.hand.Length);
         if(levelData.hand!=null){
             tutHand.gameObject.SetActive(true);
             string[] strPos = levelData.hand.pos.Split(char.Parse(","));

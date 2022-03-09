@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour
 {
-    public static int level = 0;
+    public static int level = 14;
     public static bool game_start = false;
     public static bool loadding = true;
 }
