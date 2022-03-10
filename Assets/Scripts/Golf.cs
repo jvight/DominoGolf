@@ -12,6 +12,7 @@ public class Golf : MonoBehaviour
     public Character character;
     public DrawTrajectory drawTrajectory;
     public GameObject trailFx;
+    public GameObject tutHand;
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
     private Rigidbody rb;
@@ -142,6 +143,7 @@ public class Golf : MonoBehaviour
             AudioController.instance.PlayAudio(AudioType.HitGolf, 1f);
             GameController.Instance.PlayGolf();
             rb.AddForce(new Vector3(Force.x, Math.Abs(Force.y + 200), Math.Abs(Force.y + 100)) * forceMultiplier);
+            tutHand.SetActive(false);
         }, 1.17f * Time.timeScale));
         isShoot = true;
     }
