@@ -123,7 +123,12 @@ char *const IRONSOURCE_EVENTS = "IronSourceEvents";
 }
 
 - (void)setManualLoadRewardedVideo:(BOOL) isOn {
-    NSLog(@"Manual Load will be supported as of ironSource SDK 7.2.0 for iOS");
+    if (isOn) {
+        [IronSource setRewardedVideoManualDelegate:self];
+    }
+    else {
+        [IronSource setRewardedVideoManualDelegate:nil];
+    }
 }
 
 - (void)setNetworkData:(NSString *)networkKey data:(NSString *)networkData {
@@ -152,11 +157,11 @@ char *const IRONSOURCE_EVENTS = "IronSourceEvents";
 }
 
 - (void)initWithAppKey:(NSString *)appKey {
-    [IronSource initWithAppKey:appKey];
+    [IronSource initWithAppKey:appKey delegate:self];
 }
 
 - (void)initWithAppKey:(NSString *)appKey adUnits:(NSArray<NSString *> *)adUnits {
-    [IronSource initWithAppKey:appKey adUnits:adUnits];
+    [IronSource initWithAppKey:appKey adUnits:adUnits delegate:self];
 }
 
 - (void)initISDemandOnly:(NSString *)appKey adUnits:(NSArray<NSString *> *)adUnits {
@@ -209,7 +214,7 @@ char *const IRONSOURCE_EVENTS = "IronSourceEvents";
 #pragma mark Rewarded Video Manual Load API
 
 - (void)loadRewardedVideo {
-    NSLog(@"Manual Load will be supported as of ironSource SDK 7.2.0 for iOS");
+    [IronSource loadRewardedVideo];
 }
 
 #pragma mark Rewarded Video DemanOnly API
@@ -224,6 +229,12 @@ char *const IRONSOURCE_EVENTS = "IronSourceEvents";
 
 - (BOOL)isDemandOnlyRewardedVideoAvailable:(NSString *)instanceId {
     return [IronSource hasISDemandOnlyRewardedVideo:instanceId];
+}
+
+#pragma mark Init Delegate
+
+- (void)initializationDidComplete {
+    UnitySendMessage(IRONSOURCE_EVENTS, "onSdkInitializationCompleted", "");
 }
 
 #pragma mark Rewarded Video Delegate
@@ -628,10 +639,6 @@ char *const IRONSOURCE_EVENTS = "IronSourceEvents";
 
 - (void)bannerWillLeaveApplication {
     UnitySendMessage(IRONSOURCE_EVENTS, "onBannerAdLeftApplication", "");
-}
-
-- (void)bannerDidShow {
-    
 }
 
 
@@ -1063,6 +1070,23 @@ extern "C" {
         }
       return [[iOSBridge start] setAdRevenueData:GetStringParam(datasource)impressionData:data];
     }
+
+
+#pragma mark - ISRewardedVideoManualDelegate methods
+
+
+- (void)rewardedVideoDidLoad {
+    UnitySendMessage(IRONSOURCE_EVENTS, "onRewardedVideoAdReady", "");
+}
+
+- (void)rewardedVideoDidFailToLoadWithError:(NSError *)error {
+    if (error)
+        UnitySendMessage(IRONSOURCE_EVENTS, "onRewardedVideoAdLoadFailed", MakeStringCopy([self parseErrorToEvent:error]));
+    else
+        UnitySendMessage(IRONSOURCE_EVENTS, "onRewardedVideoAdLoadFailed","");
+
+}
+
     
 #ifdef __cplusplus
 }
