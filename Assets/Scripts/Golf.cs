@@ -16,7 +16,7 @@ public class Golf : MonoBehaviour
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
     private Rigidbody rb;
-
+    public GameObject tutLv15;
     private bool isShoot = false;
     Vector3 oldPos;
     Vector3 oldAngle;
@@ -80,11 +80,12 @@ public class Golf : MonoBehaviour
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch || !StaticData.game_start) { return; }
         if (Input.GetMouseButtonDown(0) && canTouch)
         {
-            GameController.Instance.Tutorial.GetComponent<TutController>().timeChange=0;
+            GameController.Instance.Tutorial.timeChange = 0;
+            GameController.Instance.Tutorial.canActive=false;
             if (GameController.Instance.Tutorial.gameObject.active)
             {
                 GameController.Instance.Tutorial.gameObject.SetActive(false);
-                 GameController.Instance.Tutorial.isActive=false;
+                GameController.Instance.Tutorial.isActive = false;
             }
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
@@ -92,6 +93,8 @@ public class Golf : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            GameController.Instance.Tutorial.timeChange = 0;
+            GameController.Instance.Tutorial.canActive=true;
             Debug.Log("touch end");
             if (!isTouch) { return; }
             isTouch = false;
@@ -144,12 +147,14 @@ public class Golf : MonoBehaviour
         // Time.timeScale = 2;
         GameController.Instance.ChangeTime(2);
         character.Hit();
+        tutHand.SetActive(false);
+        tutLv15.SetActive(false);
+        
         StartCoroutine(DelayFunc(() =>
         {
             AudioController.instance.PlayAudio(AudioType.HitGolf, 1f);
             GameController.Instance.PlayGolf();
             rb.AddForce(new Vector3(Force.x, Math.Abs(Force.y + 200), Math.Abs(Force.y + 100)) * forceMultiplier);
-            tutHand.SetActive(false);
         }, 1.17f * Time.timeScale));
         isShoot = true;
     }
@@ -158,7 +163,7 @@ public class Golf : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "Plank")
         {
-            GameController.Instance.Tutorial.timeChange=0;
+            GameController.Instance.Tutorial.timeChange = 0;
             AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
             StartCoroutine(DelayFunc(() =>
             {
@@ -170,7 +175,7 @@ public class Golf : MonoBehaviour
         }
         else if (collisionInfo.gameObject.tag == "Border" || collisionInfo.gameObject.tag == "Object")
         {
-            GameController.Instance.Tutorial.timeChange=0;
+            GameController.Instance.Tutorial.timeChange = 0;
             AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
         }
         Debug.Log(collisionInfo.gameObject.tag);
@@ -183,7 +188,7 @@ public class Golf : MonoBehaviour
     {
         if (isShoot)
         {
-            GameController.Instance.Tutorial.timeChange=0;
+            GameController.Instance.Tutorial.timeChange = 0;
             GameController.Instance.PourDone();
         }
     }

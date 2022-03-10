@@ -15,6 +15,7 @@ public class HomeController : MonoBehaviour
     public GameObject ShopPopup;
     public GameObject ButtonNoAds;
     public Transform tutHand;
+    public GameObject tutLv15;
     void Start()
     {
         CheckNoAds();
@@ -93,6 +94,7 @@ public class HomeController : MonoBehaviour
     {
         if(StaticData.level==14){
             tutHand.gameObject.SetActive(true);
+            tutLv15.SetActive(true);
         }
         if(StaticData.level==0){
             GameController.Instance.Tutorial.gameObject.SetActive(true);
