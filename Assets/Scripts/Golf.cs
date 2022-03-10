@@ -80,6 +80,11 @@ public class Golf : MonoBehaviour
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch || !StaticData.game_start) { return; }
         if (Input.GetMouseButtonDown(0) && canTouch)
         {
+            if (GameController.Instance.Tutorial.active)
+            {
+                GameController.Instance.Tutorial.SetActive(false);
+
+            }
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
             Debug.Log("tocuh start");

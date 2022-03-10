@@ -2,20 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using TMPro;
 public class TutController : MonoBehaviour
 {
     public Transform hand;
-    
+    public TMP_Text tutText;
+    // public 
     // Start is called before the first frame update
     void Start()
     {
         var seq=DOTween.Sequence()
-        .Append(hand.DOScale(0.4f,1f))
+        .SetLoops(-1)
         .Append(hand.DOMoveX(-2f,1f))
         .Append(hand.DOMoveX(0f,1f))
         .Append(hand.DOMoveX(2f,1f))
         .Append(hand.DOMoveX(0f,1f))
+        .AppendInterval(0.3f)
+        .AppendCallback(()=>{
+            hand.GetComponent<MeshRenderer>().enabled=false;
+            Debug.Log("callback");
+        })
+        .AppendInterval(1f)
+        .AppendCallback(()=>{
+            hand.GetComponent<MeshRenderer>().enabled=true;
+            tutText.text="DRAG TO ADJUST POWER";
+
+        })
+        .AppendInterval(0.3f)
+        .Append(hand.DOLocalMove(new Vector3(0,0.8f,-4.98f),1f))
+        .Append(hand.DOLocalMove(new Vector3(0,2.38f,-3.25f),1f))
+        .Append(hand.DOLocalMove(new Vector3(0,4f,-1.97f),1f))
+        .Append(hand.DOLocalMove(new Vector3(0,2.38f,-3.25f),1f))
+        .AppendInterval(0.3f)
+        .AppendCallback(()=>{
+            hand.GetComponent<MeshRenderer>().enabled=false;
+            Debug.Log("callback");
+        })
+        .AppendInterval(1f)
+        .AppendCallback(()=>{
+            hand.GetComponent<MeshRenderer>().enabled=true;
+            tutText.text="HOLD AND MOVE TO AIM";
+        })
+        .AppendInterval(0.3f)
         .Play();
     }
 
