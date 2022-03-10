@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     public Transform FlagParent;
     public Transform ObjParent;
     public Transform ScorePlusParent;
+    public GameObject Tutorial;
+
     List<Plank> listPlank = new List<Plank>();
     List<Flag> listFlag = new List<Flag>();
     public Golf golf;

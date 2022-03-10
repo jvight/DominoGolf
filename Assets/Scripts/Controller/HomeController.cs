@@ -94,6 +94,9 @@ public class HomeController : MonoBehaviour
         if(StaticData.level==14){
             tutHand.gameObject.SetActive(true);
         }
+        if(StaticData.level==0){
+            GameController.Instance.Tutorial.SetActive(true);
+        }
         AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
         Invoke("GameStart", 0.1f);
         // SceneManager.LoadScene("LoadScene");
