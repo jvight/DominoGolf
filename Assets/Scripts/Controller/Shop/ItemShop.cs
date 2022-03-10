@@ -16,6 +16,7 @@ public class ItemShop : MonoBehaviour
     int Price = 0;
     public int State = 0;
     public bool IsAds = false;
+    bool IsComming;
     ShopController Shop;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class ItemShop : MonoBehaviour
 
     }
 
-    public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr, bool isAds)
+    public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr, bool isAds, bool isComming)
     {
         this.ID = id;
         this.Name = name;
@@ -32,6 +33,7 @@ public class ItemShop : MonoBehaviour
         this.Shop = shop;
         this.IsAds = isAds;
         this.ImgReview.sprite = spr;
+        this.IsComming = isComming;
         TextButton.text = Price.ToString();
         TextName.text = name;
         CheckState();
