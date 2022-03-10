@@ -15,6 +15,7 @@ public class ItemShop : MonoBehaviour
     string Name;
     int Price = 0;
     public int State = 0;
+    public bool IsAds = false;
     ShopController Shop;
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,14 @@ public class ItemShop : MonoBehaviour
 
     }
 
-    public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr)
+    public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr, bool isAds)
     {
         this.ID = id;
         this.Name = name;
         this.Price = price;
         this.State = state;
         this.Shop = shop;
+        this.IsAds = isAds;
         this.ImgReview.sprite = spr;
         TextButton.text = Price.ToString();
         TextName.text = name;
@@ -70,6 +72,21 @@ public class ItemShop : MonoBehaviour
         {
             case 0:
                 Btn.GetComponent<Image>().sprite = sprBtns[0];
+                if (IsAds)
+                {
+                    ImgReview.color = Color.black;
+                    ImgReview.transform.GetChild(0).gameObject.SetActive(true);
+                    if (PlayerPrefs.GetInt("Ball" + ID.ToString()) == 0)
+                    {
+                        Btn.SetActive(false);
+                    }
+                    else if (PlayerPrefs.GetInt("Ball" + ID.ToString()) == 1)
+                    {
+                        TextButton.transform.localPosition = new Vector3(0, TextButton.transform.localPosition.y);
+                        Btn.transform.GetChild(1).gameObject.SetActive(false);
+                        TextButton.text = "Unlock Now";
+                    }
+                }
                 break;
             case 1:
                 Btn.GetComponent<Image>().sprite = sprBtns[0];

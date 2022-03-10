@@ -1,0 +1,51 @@
+{
+"skeleton": {
+	"hash": "gxhExFCHLwY92Na21lkvE8YtEDg",
+	"spine": "3.8.99",
+	"x": -457.72,
+	"y": -312.18,
+	"width": 954,
+	"height": 902,
+	"images": "./image/",
+	"audio": "D:/[Game]CSC_mobi/g31_DominoGolf/board/image"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "l1", "parent": "root", "x": 33.24, "y": 65.28 }
+],
+"slots": [
+	{ "name": "board", "bone": "root", "attachment": "board" },
+	{ "name": "l2", "bone": "l1", "color": "ffffff32", "attachment": "l2", "blend": "additive" },
+	{ "name": "l1", "bone": "l1", "color": "ffffffa0", "attachment": "l1", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"board": {
+				"board": { "x": 19.28, "y": 138.82, "width": 954, "height": 902 }
+			},
+			"l1": {
+				"l1": { "width": 455, "height": 455 }
+			},
+			"l2": {
+				"l2": { "width": 542, "height": 542 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"l1": {
+				"rotate": [
+					{},
+					{ "time": 2, "angle": -120 },
+					{ "time": 4, "angle": 120 },
+					{ "time": 6 }
+				]
+			}
+		}
+	}
+}
+}

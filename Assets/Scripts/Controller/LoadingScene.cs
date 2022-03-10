@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
-    public Image progress;
+    public RectTransform progress;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,14 @@ public class LoadingScene : MonoBehaviour
         // AppOpenAdManager.Instance.LoadAd();
         StaticData.loadding = true;
         AudioController.instance.PlayAudio(AudioType.BGM, 0.5f);
-        progress.DOFillAmount(1f, 1f).OnComplete(() =>
+        progress.DOSizeDelta(new Vector2(555, 55), 1).OnComplete(() =>
         {
             SceneManager.LoadScene("GameScene");
         });
+        // progress.DOFillAmount(1f, 1f).OnComplete(() =>
+        // {
+        //     SceneManager.LoadScene("GameScene");
+        // });
     }
 
     void InitBanner()

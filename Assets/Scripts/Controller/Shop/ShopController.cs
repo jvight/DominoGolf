@@ -49,6 +49,7 @@ public class ShopController : MonoBehaviour
             // }
             Item item = listItem.Ball[i];
             int s = 0;
+            bool idAds = false;
             if (PlayerPrefs.GetInt("Ball" + item.ID.ToString(), 0) == 1)
             {
                 s = 1;
@@ -57,7 +58,10 @@ public class ShopController : MonoBehaviour
                     s = 2;
                 }
             }
-            OnCreateItem(item.ID, item.Name, item.Price, s, SprBall[item.ID]);
+            if (i > 5) {
+                idAds = true;
+            }
+            OnCreateItem(item.ID, item.Name, item.Price, s, SprBall[item.ID], idAds);
         }
         Debug.Log(listItem.Ball);
     }
@@ -96,11 +100,11 @@ public class ShopController : MonoBehaviour
         TextCoin.text = PlayerPrefs.GetInt("Coin", 0).ToString();
     }
 
-    void OnCreateItem(int id, string name, int price, int s, Sprite spr)
+    void OnCreateItem(int id, string name, int price, int s, Sprite spr, bool isAds)
     {
         GameObject item = Instantiate(PrefabItem);
         item.transform.SetParent(BaseItem);
-        item.GetComponent<ItemShop>().SetID(id, name, price, s, this, spr);
+        item.GetComponent<ItemShop>().SetID(id, name, price, s, this, spr, isAds);
     }
 
     public void SetBall(int id)
