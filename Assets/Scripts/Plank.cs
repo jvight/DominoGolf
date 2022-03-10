@@ -44,6 +44,7 @@ public class Plank : MonoBehaviour
     {
         if ((!coled && collisionInfo.gameObject.tag == "Plank") || (!coled && collisionInfo.gameObject.tag == "Ball"))
         {
+            GameController.Instance.Tutorial.timeChange=0;
             AudioController.instance.PlayAudio(AudioType.Fall, 1f);
             if (listColorChange.Count > 0)
             {

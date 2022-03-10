@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public Transform FlagParent;
     public Transform ObjParent;
     public Transform ScorePlusParent;
-    public GameObject Tutorial;
+    public TutController Tutorial;
 
     List<Plank> listPlank = new List<Plank>();
     List<Flag> listFlag = new List<Flag>();
@@ -52,7 +52,8 @@ public class GameController : MonoBehaviour
         // uiController.UpdateAmountFlag(listFlag.Count);
     }
 
-    public void SetBallTexture() {
+    public void SetBallTexture()
+    {
         golf.GetComponent<MeshRenderer>().material.mainTexture = TextureBall[PlayerPrefs.GetInt("BallUse", 0)];
     }
 
@@ -154,6 +155,7 @@ public class GameController : MonoBehaviour
 
     public void GameLose()
     {
+        Tutorial.canActive=false;
         StartCoroutine(DelayFunc(() =>
         {
             uiController.GameLoseEvent();
@@ -163,11 +165,13 @@ public class GameController : MonoBehaviour
 
     public void GameWin()
     {
+        Tutorial.canActive=false;
         character.Victory();
         uiController.AddScore();
         StartCoroutine(DelayFunc(() =>
         {
-            if (StaticData.level >= 4) {
+            if (StaticData.level >= 4)
+            {
                 // AdsController.Instance.ShowInterstitial();
             }
             int numOff = PlayerPrefs.GetInt("RateOff", 0);
@@ -185,7 +189,14 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Tutorial.timeChange += Time.deltaTime;
+        if (Tutorial.timeChange >= 15f && !Tutorial.isActive&&Tutorial.canActive)
+        {
+            Tutorial.ActiveTut();
 
+            Tutorial.ResetTut();
+            Tutorial.MoveTut();
+        }
     }
 
     IEnumerator DelayFunc(Action call, float time)
