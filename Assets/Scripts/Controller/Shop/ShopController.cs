@@ -25,7 +25,7 @@ public class ShopController : MonoBehaviour
         public string Name;
         public int Price;
         public bool IsAds;
-        public bool IsComming;
+        public bool IsComing;
     }
     [System.Serializable]
     public class ListItem
@@ -37,6 +37,7 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("Ball" + 6.ToString(), 1);
         UpdateCoin();
         PlayerPrefs.SetInt("Coin", 5000);
         PlayerPrefs.SetInt("Ball0", 1);
@@ -51,7 +52,12 @@ public class ShopController : MonoBehaviour
             // }
             Item item = listItem.Ball[i];
             int s = 0;
-            if (PlayerPrefs.GetInt("Ball" + item.ID.ToString(), 0) == 1)
+            Sprite spr = null;
+            if (!item.IsComing)
+            {
+                spr = SprBall[item.ID];
+            }
+            if (PlayerPrefs.GetInt("Ball" + item.ID.ToString(), 0) == 5)
             {
                 s = 1;
                 if (PlayerPrefs.GetInt("BallUse", 0) == item.ID)
@@ -59,7 +65,7 @@ public class ShopController : MonoBehaviour
                     s = 2;
                 }
             }
-            OnCreateItem(item.ID, item.Name, item.Price, s, SprBall[item.ID], item.IsAds, item.IsComming);
+            OnCreateItem(item.ID, item.Name, item.Price, s, spr, item.IsAds, item.IsComing);
         }
         Debug.Log(listItem.Ball);
     }
@@ -96,6 +102,7 @@ public class ShopController : MonoBehaviour
     public void UpdateCoin()
     {
         TextCoin.text = PlayerPrefs.GetInt("Coin", 0).ToString();
+        GameController.Instance.uiController.UpdateTextCoin(PlayerPrefs.GetInt("Coin", 0));
     }
 
     void OnCreateItem(int id, string name, int price, int s, Sprite spr, bool isAds, bool isComming)
@@ -122,7 +129,7 @@ public class ShopController : MonoBehaviour
             else
             {
                 item.BGChoose.SetActive(false);
-                if (PlayerPrefs.GetInt("Ball" + i.ToString(), 0) == 1)
+                if (PlayerPrefs.GetInt("Ball" + i.ToString(), 0) == 5)
                 {
                     item.State = 1;
                     item.CheckState();

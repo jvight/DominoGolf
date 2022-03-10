@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-        // AdsController.Instance.LoadInterstitial();
+        AdsController.Instance.LoadInterstitial();
         SkyboxController.instance.ChangeSkybox();
         coin = PlayerPrefs.GetInt("Coin", 0);
         uiController.UpdateTextCoin(coin);
@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour
         {
             if (StaticData.level >= 4)
             {
-                // AdsController.Instance.ShowInterstitial();
+                AdsController.Instance.ShowInterstitial();
             }
             int numOff = PlayerPrefs.GetInt("RateOff", 0);
             Debug.Log(numOff);

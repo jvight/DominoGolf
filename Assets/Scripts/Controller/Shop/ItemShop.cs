@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ItemShop : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class ItemShop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     public void SetID(int id, string name, int price, int state, ShopController shop, Sprite spr, bool isAds, bool isComming)
@@ -32,10 +32,13 @@ public class ItemShop : MonoBehaviour
         this.State = state;
         this.Shop = shop;
         this.IsAds = isAds;
-        this.ImgReview.sprite = spr;
         this.IsComming = isComming;
         TextButton.text = Price.ToString();
         TextName.text = name;
+        if (spr != null)
+        {
+            this.ImgReview.sprite = spr;
+        }
         CheckState();
     }
 
@@ -44,17 +47,28 @@ public class ItemShop : MonoBehaviour
         switch (State)
         {
             case 0:
+                if (IsAds && PlayerPrefs.GetInt("Ball" + ID.ToString()) == 1)
+                {
+                    AdsController.Instance.ShowVideoAds(() =>
+                        {
+                        }, () =>
+                        {
+                            PlayerPrefs.SetInt("Ball" + ID.ToString(), 5);
+                            Unlock();
+                            State = 1;
+                        });
+                }
                 int coin = PlayerPrefs.GetInt("Coin", 0);
                 // List<int> dataItem = DataController.GetArrayForKey("Items");
                 Debug.Log(ID);
                 if (coin >= Price)
                 {
-                    PlayerPrefs.SetInt("Ball" + ID.ToString(), 1);
+                    PlayerPrefs.SetInt("Ball" + ID.ToString(), 5);
                     State = 1;
                     coin -= Price;
                     PlayerPrefs.SetInt("Coin", coin);
                     Shop.UpdateCoin();
-
+                    GameController.Instance.uiController.UpdateTextCoin(coin);
                 }
                 break;
             case 1:
@@ -68,6 +82,11 @@ public class ItemShop : MonoBehaviour
         CheckState();
     }
 
+    void Unlock()
+    {
+        Debug.Log("??");
+        ImgReview.DOColor(Color.white, 1);
+    }
     public void CheckState()
     {
         switch (State)
@@ -84,13 +103,21 @@ public class ItemShop : MonoBehaviour
                     }
                     else if (PlayerPrefs.GetInt("Ball" + ID.ToString()) == 1)
                     {
+                        Btn.SetActive(true);
                         TextButton.transform.localPosition = new Vector3(0, TextButton.transform.localPosition.y);
                         Btn.transform.GetChild(1).gameObject.SetActive(false);
                         TextButton.text = "Unlock Now";
                     }
                 }
+                if (IsComming)
+                {
+                    ImgReview.color = Color.black;
+                    ImgReview.transform.GetChild(0).gameObject.SetActive(true);
+                    Btn.SetActive(false);
+                }
                 break;
             case 1:
+                ImgReview.transform.GetChild(0).gameObject.SetActive(false);
                 Btn.GetComponent<Image>().sprite = sprBtns[0];
                 TextButton.transform.localPosition = new Vector3(0, TextButton.transform.localPosition.y);
                 Btn.transform.GetChild(1).gameObject.SetActive(false);
@@ -108,7 +135,7 @@ public class ItemShop : MonoBehaviour
 
     public void OnClickChoose()
     {
-        Debug.Log(this.ID);
+        if (IsComming || IsAds && PlayerPrefs.GetInt("Ball" + ID.ToString()) != 5) { return; }
         Shop.SetBall(this.ID);
     }
 
