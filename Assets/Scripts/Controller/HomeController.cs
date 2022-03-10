@@ -95,7 +95,10 @@ public class HomeController : MonoBehaviour
             tutHand.gameObject.SetActive(true);
         }
         if(StaticData.level==0){
-            GameController.Instance.Tutorial.SetActive(true);
+            GameController.Instance.Tutorial.gameObject.SetActive(true);
+            GameController.Instance.Tutorial.hand.gameObject.SetActive(true);
+            GameController.Instance.Tutorial.tutText.gameObject.SetActive(true);
+            GameController.Instance.Tutorial.MoveTut();
         }
         AudioController.instance.PlayAudio(AudioType.Click, 0.5f);
         Invoke("GameStart", 0.1f);

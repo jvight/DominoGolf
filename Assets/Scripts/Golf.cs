@@ -80,10 +80,11 @@ public class Golf : MonoBehaviour
         if (isShoot || GameController.Instance.AmountBall <= 0 || GameController.Instance.GameDone || !canTouch || !StaticData.game_start) { return; }
         if (Input.GetMouseButtonDown(0) && canTouch)
         {
-            if (GameController.Instance.Tutorial.active)
+            GameController.Instance.Tutorial.GetComponent<TutController>().timeChange=0;
+            if (GameController.Instance.Tutorial.gameObject.active)
             {
-                GameController.Instance.Tutorial.SetActive(false);
-
+                GameController.Instance.Tutorial.gameObject.SetActive(false);
+                 GameController.Instance.Tutorial.isActive=false;
             }
             mousePressDownPos = Input.mousePosition;
             isTouch = true;
@@ -157,6 +158,7 @@ public class Golf : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "Plank")
         {
+            GameController.Instance.Tutorial.timeChange=0;
             AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
             StartCoroutine(DelayFunc(() =>
             {
@@ -168,6 +170,7 @@ public class Golf : MonoBehaviour
         }
         else if (collisionInfo.gameObject.tag == "Border" || collisionInfo.gameObject.tag == "Object")
         {
+            GameController.Instance.Tutorial.timeChange=0;
             AudioController.instance.PlayAudio(AudioType.GolfHitOther, 0.5f);
         }
         Debug.Log(collisionInfo.gameObject.tag);
@@ -180,6 +183,7 @@ public class Golf : MonoBehaviour
     {
         if (isShoot)
         {
+            GameController.Instance.Tutorial.timeChange=0;
             GameController.Instance.PourDone();
         }
     }
