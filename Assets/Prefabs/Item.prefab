@@ -702,7 +702,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 62a1ac70392f8fb46bb5a375c8950a99, type: 3}
   BGChoose: {fileID: 8457783527231216366}
   State: 0
-  isAds: 0
+  IsAds: 0
 --- !u!1 &4314511151308421750
 GameObject:
   m_ObjectHideFlags: 0
