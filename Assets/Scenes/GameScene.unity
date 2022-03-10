@@ -507,6 +507,7 @@ MonoBehaviour:
   character: {fileID: 255702407}
   drawTrajectory: {fileID: 169144360}
   trailFx: {fileID: 2125708692}
+  tutHand: {fileID: 1671615910}
 --- !u!54 &71200981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3683,6 +3684,7 @@ MonoBehaviour:
   character: {fileID: 255702407}
   drawTrajectory: {fileID: 169144360}
   trailFx: {fileID: 0}
+  tutHand: {fileID: 0}
 --- !u!1 &651304597
 GameObject:
   m_ObjectHideFlags: 0
