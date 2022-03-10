@@ -190,7 +190,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         Tutorial.timeChange += Time.deltaTime;
-        if (Tutorial.timeChange >= 15f && !Tutorial.isActive&&Tutorial.canActive)
+        if (Tutorial.timeChange >= 15f && !Tutorial.isActive&&Tutorial.canActive&&!gameObject.GetComponent<JSONReader>().BG.active)
         {
             Tutorial.ActiveTut();
 
